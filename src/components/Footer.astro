@@ -1,0 +1,59 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-gray-900 text-gray-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <!-- About -->
+      <div>
+        <h3 class="text-white font-semibold mb-4">About</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+          <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+          <li><a href="/stores" class="text-gray-400 hover:text-white transition-colors">All Stores</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h3 class="text-white font-semibold mb-4">Legal</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/privacy" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms" class="text-gray-400 hover:text-white transition-colors">Terms of Use</a></li>
+          <li><a href="/imprint" class="text-gray-400 hover:text-white transition-colors">Imprint</a></li>
+        </ul>
+      </div>
+
+      <!-- Popular Categories -->
+      <div>
+        <h3 class="text-white font-semibold mb-4">Popular Categories</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/tag-fashion" class="text-gray-400 hover:text-white transition-colors">Fashion</a></li>
+          <li><a href="/tag-electronics" class="text-gray-400 hover:text-white transition-colors">Electronics</a></li>
+          <li><a href="/tag-home-garden" class="text-gray-400 hover:text-white transition-colors">Home & Garden</a></li>
+        </ul>
+      </div>
+
+      <!-- Help -->
+      <div>
+        <h3 class="text-white font-semibold mb-4">Help</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+          <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors">Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-8 border-t border-gray-800">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-400">
+          &copy; {currentYear} WhatsDiscount. All rights reserved.
+        </p>
+        <p class="text-sm text-gray-500">
+          Save money with verified UK voucher codes
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

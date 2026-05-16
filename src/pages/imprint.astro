@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+---
+
+<BaseLayout>
+  <head>
+    <SEO
+      title="Imprint - WhatsDiscount"
+      description="Legal imprint and operator information for WhatsDiscount."
+    />
+  </head>
+
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Imprint</h1>
+    
+    <div class="prose prose-gray max-w-none space-y-6">
+      <h2 class="text-xl font-semibold text-gray-900">Website Operator</h2>
+      <p class="text-gray-600">
+        WhatsDiscount<br />
+        United Kingdom<br />
+        Email: <a href="/contact" class="text-primary hover:text-primary-hover">Contact us</a>
+      </p>
+
+      <h2 class="text-xl font-semibold text-gray-900">Disclaimer</h2>
+      <p class="text-gray-600">
+        The content of this website has been created with the utmost care. However, we cannot guarantee the accuracy, completeness, or timeliness of the information provided.
+      </p>
+
+      <h2 class="text-xl font-semibold text-gray-900">Liability for Links</h2>
+      <p class="text-gray-600">
+        Our website contains links to external third-party websites. We have no influence on the content of these websites and therefore cannot assume any liability for them. The respective providers or operators of the linked sites are always responsible for their content.
+      </p>
+
+      <h2 class="text-xl font-semibold text-gray-900">Copyright</h2>
+      <p class="text-gray-600">
+        The content and works created by the site operators on these pages are subject to UK copyright law. The duplication, processing, distribution, or any form of commercialisation of such material requires the prior written consent of the respective author or creator.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

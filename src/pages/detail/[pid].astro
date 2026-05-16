@@ -1,0 +1,182 @@
+---
+import { getStoreDetail } from '../../lib/cms-client';
+import { getImageUrl, decodeCouponLink, encodeCouponLink } from '../../lib/utils';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SEO from '../../components/SEO.astro';
+import type { SiteStoreDetail, Coupon } from '../../lib/types';
+
+const { pid } = Astro.params;
+
+if (!pid) {
+  return Astro.redirect('/');
+}
+
+let domain: string;
+let couponId: number;
+
+try {
+  const decoded = decodeCouponLink(pid);
+  domain = decoded.domain;
+  couponId = decoded.couponId;
+} catch {
+  return Astro.redirect('/');
+}
+
+let store: SiteStoreDetail | null = null;
+let coupon: Coupon | null = null;
+
+try {
+  store = await getStoreDetail(domain);
+  coupon = store.coupons.find((c) => c.id === couponId) || null;
+} catch {
+  return Astro.redirect('/');
+}
+
+if (!coupon) {
+  return Astro.redirect(`/discount/${domain}`);
+}
+
+const isValid = coupon.isValid !== 0;
+const encodedId = encodeCouponLink(store.domain, coupon.id);
+---
+
+<BaseLayout>
+  <head>
+    <SEO
+      title={`${coupon.title} - ${store.name} | WhatsDiscount`}
+      description={coupon.description || coupon.title}
+      structuredData={{
+        "@context": "https://schema.org",
+        "@type": "Offer",
+        "name": coupon.title,
+        "description": coupon.description || coupon.title,
+        "url": `https://www.whatsdiscount.co.uk/detail/${encodedId}`,
+        "seller": {
+          "@type": "Organization",
+          "name": store.name
+        },
+        "availability": isValid ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+      }}
+    />
+  </head>
+
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <!-- Back Link -->
+    <a href={`/discount/${store.domain}`} class="inline-flex items-center text-sm text-gray-500 hover:text-primary transition-colors mb-6">
+      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back to {store.name}
+    </a>
+
+    <!-- Coupon Detail Card -->
+    <div class="card p-6 md:p-8">
+      <div class="flex items-start gap-4 mb-6">
+        <div class="w-16 h-16 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+          <img
+            src={getImageUrl(store.logoPic)}
+            alt={store.name}
+            class="w-12 h-12 object-contain"
+          />
+        </div>
+        <div class="flex-1">
+          <a href={`/discount/${store.domain}`} class="text-sm font-medium text-gray-500 hover:text-primary">
+            {store.name}
+          </a>
+          <h1 class="text-xl md:text-2xl font-bold text-gray-900 mt-1">{coupon.title}</h1>
+        </div>
+      </div>
+
+      {coupon.description && (
+        <p class="text-gray-600 mb-6">{coupon.description}</p>
+      )}
+
+      {isValid && coupon.type === 'code' && coupon.code && (
+        <div class="bg-gray-50 rounded-lg p-4 mb-6">
+          <p class="text-sm text-gray-500 mb-2">Your voucher code:</p>
+          <div class="flex items-center gap-3">
+            <code class="flex-1 text-lg font-mono font-bold text-gray-900 bg-white border border-gray-200 rounded-lg px-4 py-3 text-center select-all">
+              {coupon.code}
+            </code>
+            <button
+              id="copy-code"
+              class="btn-secondary px-4 py-3 text-sm whitespace-nowrap"
+            >
+              Copy
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a
+          href={`/api/r?domain=${store.domain}`}
+          class="btn-primary text-center"
+          rel="nofollow noopener"
+          target="_blank"
+        >
+          Go to {store.name} &rarr;
+        </a>
+      </div>
+
+      {!isValid && (
+        <p class="text-sm text-gray-500 mt-4 text-center">
+          This code may have expired. Try it anyway or browse other {store.name} codes.
+        </p>
+      )}
+    </div>
+
+    <!-- How to Use -->
+    <div class="mt-8 card p-6">
+      <h2 class="text-lg font-semibold text-gray-900 mb-4">How to use this code</h2>
+      <ol class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start gap-3">
+          <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-xs font-medium flex items-center justify-center">1</span>
+          <span>Copy the voucher code above</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-xs font-medium flex items-center justify-center">2</span>
+          <span>Click "Go to {store.name}" to visit their website</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-xs font-medium flex items-center justify-center">3</span>
+          <span>Add items to your basket and proceed to checkout</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-xs font-medium flex items-center justify-center">4</span>
+          <span>Paste the code in the discount code field and apply</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  document.getElementById('copy-code')?.addEventListener('click', async () => {
+    const codeEl = document.querySelector('code');
+    if (!codeEl) return;
+    
+    try {
+      await navigator.clipboard.writeText(codeEl.textContent || '');
+      const btn = document.getElementById('copy-code');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+      }
+    } catch {
+      // Fallback for older browsers
+      const textarea = document.createElement('textarea');
+      textarea.value = codeEl.textContent || '';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      
+      const btn = document.getElementById('copy-code');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+      }
+    }
+  });
+</script>

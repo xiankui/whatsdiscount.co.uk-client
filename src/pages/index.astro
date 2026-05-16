@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+import HeroStats from '../components/HeroStats.astro';
+import CouponCard from '../components/CouponCard.astro';
+import StoreCard from '../components/StoreCard.astro';
+import { getSiteStats, getLatestCoupons, getPopularStores } from '../lib/cms-client';
+import type { SiteStoreSummary, CouponWithSiteStore } from '../lib/types';
+
+let stats = { storeCount: 3000, couponCount: 25000 };
+let latestCoupons: CouponWithSiteStore[] = [];
+let popularStores: SiteStoreSummary[] = [];
+
+try {
+  stats = await getSiteStats();
+} catch {
+  // Use fallback values
+}
+
+try {
+  latestCoupons = await getLatestCoupons(10);
+} catch {
+  // Empty fallback
+}
+
+try {
+  popularStores = await getPopularStores(12);
+} catch {
+  // Empty fallback
+}
+---
+
+<BaseLayout>
+  <head>
+    <SEO
+      title="WhatsDiscount - Verified UK Promo Codes & Voucher Codes"
+      description="Save money with hand-tested promo codes from 3,000+ UK stores. Get verified voucher codes, exclusive deals, and discount offers updated daily."
+      structuredData={{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "WhatsDiscount",
+        "url": "https://www.whatsdiscount.co.uk",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.whatsdiscount.co.uk/discount/{search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }}
+    />
+  </head>
+  
+  <!-- Hero Section -->
+  <HeroStats storeCount={stats.storeCount} couponCount={stats.couponCount} />
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <!-- Trending Deals -->
+    <section class="mb-12 md:mb-16">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Trending Deals</h2>
+        <a href="/stores" class="text-sm font-medium text-primary hover:text-primary-hover">
+          View all &rarr;
+        </a>
+      </div>
+      
+      <div class="space-y-4">
+        {latestCoupons.map((item) => (
+          <CouponCard coupon={item} store={item.siteStore} />
+        ))}
+      </div>
+    </section>
+
+    <!-- Popular Stores -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Popular Stores</h2>
+        <a href="/stores" class="text-sm font-medium text-primary hover:text-primary-hover">
+          View all &rarr;
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {popularStores.map((store) => (
+          <StoreCard store={store} />
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

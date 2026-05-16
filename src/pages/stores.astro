@@ -1,0 +1,44 @@
+---
+import { getTags } from '../lib/cms-client';
+import { slugify } from '../lib/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+
+let tags: string[] = [];
+try {
+  tags = await getTags();
+} catch {
+  // Empty fallback
+}
+---
+
+<BaseLayout>
+  <head>
+    <SEO
+      title="All Store Categories - WhatsDiscount UK"
+      description="Browse all store categories on WhatsDiscount. Find voucher codes and promo codes for fashion, electronics, home & garden, and more UK retailers."
+    />
+  </head>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+      All Store Categories
+    </h1>
+    <p class="text-gray-600 mb-8">
+      Browse categories to find voucher codes from UK retailers
+    </p>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+      {tags.map((tag) => (
+        <a
+          href={`/tag-${slugify(tag)}`}
+          class="card p-4 text-center hover:border-primary transition-colors group"
+        >
+          <span class="font-medium text-gray-900 group-hover:text-primary transition-colors">
+            {tag}
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

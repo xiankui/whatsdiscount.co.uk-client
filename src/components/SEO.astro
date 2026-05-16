@@ -1,0 +1,57 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  image?: string;
+  canonical?: string;
+  structuredData?: Record<string, unknown>;
+  type?: 'website' | 'article' | 'product';
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  image,
+  canonical,
+  structuredData,
+  type = 'website',
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = import.meta.env.BASE_URL || 'https://www.whatsdiscount.co.uk';
+const currentCanonical = canonical || siteUrl + Astro.url.pathname;
+const ogImage = image || `${siteUrl}/og-default.png`;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
+
+<link rel="canonical" href={currentCanonical} />
+
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={currentCanonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:site_name" content="WhatsDiscount" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{structuredData && (
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(structuredData)}
+  />
+)}

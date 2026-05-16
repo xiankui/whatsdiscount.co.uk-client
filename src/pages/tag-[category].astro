@@ -1,0 +1,88 @@
+---
+import { getCouponsByTag } from '../lib/cms-client';
+import { slugify } from '../lib/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+import CouponCard from '../components/CouponCard.astro';
+import type { CouponWithSiteStore } from '../lib/types';
+
+const { category } = Astro.params;
+
+if (!category) {
+  return Astro.redirect('/stores');
+}
+
+const tagName = category.replace(/-/g, ' ').replace(/ and /g, ' & ');
+const tagNameCapitalized = tagName.split(' ').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+let coupons: CouponWithSiteStore[] = [];
+try {
+  coupons = await getCouponsByTag(tagNameCapitalized);
+} catch {
+  // Try with & instead of and
+  try {
+    const altTagName = category.replace(/-/g, ' ').replace(/ and /g, '&');
+    coupons = await getCouponsByTag(altTagName);
+  } catch {
+    // Empty fallback
+  }
+}
+---
+
+<BaseLayout>
+  <head>
+    <SEO
+      title={`${tagNameCapitalized} Voucher Codes & Promo Codes - WhatsDiscount UK`}
+      description={`Browse verified ${tagNameCapitalized.toLowerCase()} voucher codes and promo codes. Save money at top UK ${tagNameCapitalized.toLowerCase()} stores with exclusive discounts and deals.`}
+      structuredData={{
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": `${tagNameCapitalized} Voucher Codes`,
+        "itemListElement": coupons.slice(0, 10).map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "WebPage",
+            "name": item.siteStore.name,
+            "url": `https://www.whatsdiscount.co.uk/discount/${item.siteStore.domain}`
+          }
+        }))
+      }}
+    />
+  </head>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div class="mb-8">
+      <a href="/stores" class="inline-flex items-center text-sm text-gray-500 hover:text-primary transition-colors mb-4">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        All Categories
+      </a>
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-900">
+        {tagNameCapitalized} Voucher Codes & Deals
+      </h1>
+      <p class="text-gray-600 mt-2">
+        {coupons.length} {coupons.length === 1 ? 'offer' : 'offers'} available
+      </p>
+    </div>
+
+    {coupons.length > 0 ? (
+      <div class="space-y-4">
+        {coupons.map((item) => (
+          <CouponCard coupon={item} store={item.siteStore} />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-16">
+        <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <p class="text-gray-500 text-lg">No offers found for this category</p>
+        <a href="/stores" class="inline-block mt-4 text-primary hover:text-primary-hover font-medium">
+          Browse other categories &rarr;
+        </a>
+      </div>
+    )}
+  </div>
+</BaseLayout>

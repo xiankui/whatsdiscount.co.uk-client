@@ -1,0 +1,240 @@
+---
+import { getStoreDetail, getRelatedStores } from '../../lib/cms-client';
+import { getImageUrl, encodeCouponLink, formatDate } from '../../lib/utils';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SEO from '../../components/SEO.astro';
+import StoreCard from '../../components/StoreCard.astro';
+import type { SiteStoreDetail, SiteStoreSummary } from '../../lib/types';
+
+const { domain } = Astro.params;
+
+if (!domain) {
+  return Astro.redirect('/');
+}
+
+let store: SiteStoreDetail | null = null;
+let relatedStores: SiteStoreSummary[] = [];
+
+try {
+  store = await getStoreDetail(domain);
+} catch {
+  return Astro.redirect('/');
+}
+
+try {
+  relatedStores = await getRelatedStores(domain, 6);
+} catch {
+  // Empty fallback
+}
+
+const isValid = (coupon: { isValid?: number }) => coupon.isValid !== 0;
+---
+
+<BaseLayout>
+  <head>
+    <SEO
+      title={store.seo.title}
+      description={store.seo.description}
+      keywords={store.seo.keywords}
+      structuredData={store.faqs.length > 0 ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": store.faqs.map((faq) => ({
+          "@type": "Question",
+          "name": faq.topic,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.content
+          }
+        }))
+      } : undefined}
+    />
+  </head>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <!-- Store Header -->
+    <div class="mb-8 md:mb-12">
+      <div class="flex flex-col sm:flex-row items-start gap-4 mb-4">
+        <div class="w-20 h-20 md:w-24 md:h-24 rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+          <img
+            src={getImageUrl(store.logoPic)}
+            alt={store.name}
+            class="w-16 h-16 md:w-20 md:h-20 object-contain"
+          />
+        </div>
+        <div class="flex-1">
+          <h1 class="text-2xl md:text-3xl font-bold text-gray-900">{store.seo.h1}</h1>
+          {store.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-3">
+              {store.tags.map((tag) => (
+                <a
+                  href={`/tag-${tag.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`}
+                  class="tag text-xs"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+      
+      {store.lastUpdateAt && (
+        <p class="text-sm text-gray-500">
+          Last updated: {formatDate(store.lastUpdateAt)}
+        </p>
+      )}
+    </div>
+
+    <!-- Coupons Section -->
+    <section class="mb-12 md:mb-16">
+      <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">
+        Active Voucher Codes & Deals
+      </h2>
+      
+      <div class="space-y-4">
+        {store.coupons.map((coupon) => {
+          const encodedId = encodeCouponLink(store.domain, coupon.id);
+          const valid = isValid(coupon);
+          
+          return (
+            <div class={`card p-4 md:p-6 ${!valid ? 'opacity-60' : ''}`}>
+              <div class="flex flex-col sm:flex-row gap-4">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="min-w-0">
+                      <h3 class="text-base md:text-lg font-semibold text-gray-900 line-clamp-2">
+                        {coupon.title}
+                      </h3>
+                      {coupon.description && (
+                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">{coupon.description}</p>
+                      )}
+                    </div>
+                    {valid && <span class="badge-verified flex-shrink-0">Verified</span>}
+                  </div>
+
+                  <div class="mt-4 flex flex-wrap items-center gap-3">
+                    {coupon.type === 'code' && coupon.code ? (
+                      <a
+                        href={`/detail/${encodedId}`}
+                        class="btn-primary text-sm px-4 py-2"
+                      >
+                        Show Code
+                      </a>
+                    ) : (
+                      <a
+                        href={`/api/r?domain=${store.domain}`}
+                        class="btn-primary text-sm px-4 py-2"
+                        rel="nofollow noopener"
+                        target="_blank"
+                      >
+                        Get Deal
+                      </a>
+                    )}
+                    
+                    <a
+                      href={`/api/r?domain=${store.domain}`}
+                      class="text-sm text-gray-500 hover:text-primary transition-colors"
+                      rel="nofollow noopener"
+                      target="_blank"
+                    >
+                      Go to Store &rarr;
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- Saving Tips -->
+    {store.savingTips.length > 0 && (
+      <section class="mb-12 md:mb-16">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">
+          Saving Tips
+        </h2>
+        
+        <div class="space-y-4">
+          {store.savingTips.map((tip) => (
+            <div class="card p-4 md:p-6">
+              <h3 class="font-semibold text-gray-900 mb-2">{tip.title}</h3>
+              <p class="text-sm text-gray-600">{tip.content}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- FAQ Section -->
+    {store.faqs.length > 0 && (
+      <section class="mb-12 md:mb-16">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">
+          Frequently Asked Questions
+        </h2>
+        
+        <div class="space-y-3" id="faq-accordion">
+          {store.faqs.map((faq, index) => (
+            <div class="card">
+              <button
+                class="faq-toggle w-full p-4 md:p-6 text-left flex items-center justify-between gap-4"
+                data-index={index}
+                aria-expanded="false"
+              >
+                <span class="font-medium text-gray-900">{faq.topic}</span>
+                <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-content hidden px-4 md:px-6 pb-4 md:pb-6">
+                <p class="text-sm text-gray-600">{faq.content}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- About Section -->
+    {store.about && (
+      <section class="mb-12 md:mb-16">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+          About {store.name}
+        </h2>
+        <div class="card p-4 md:p-6">
+          <p class="text-sm text-gray-600 leading-relaxed">{store.about}</p>
+        </div>
+      </section>
+    )}
+
+    <!-- Related Stores -->
+    {relatedStores.length > 0 && (
+      <section>
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">
+          Related Stores
+        </h2>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {relatedStores.map((relatedStore) => (
+            <StoreCard store={relatedStore} />
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach((button) => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling as HTMLElement;
+      const icon = button.querySelector('.faq-icon') as SVGElement;
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      
+      button.setAttribute('aria-expanded', String(!isExpanded));
+      content?.classList.toggle('hidden');
+      icon?.classList.toggle('rotate-180');
+    });
+  });
+</script>
