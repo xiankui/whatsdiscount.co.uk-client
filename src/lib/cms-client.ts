@@ -3,26 +3,44 @@ import type { ApiResponse } from './types';
 const CMS_API_BASE = import.meta.env.CMS_API_URL;
 const SITE_ID = import.meta.env.SITE_ID;
 
+if (!CMS_API_BASE) {
+  throw new Error('Missing CMS_API_URL environment variable. Check your .env.local file.');
+}
+
+if (!SITE_ID) {
+  throw new Error('Missing SITE_ID environment variable. Check your .env.local file.');
+}
+
 async function cmsFetch<T>(path: string): Promise<T> {
   const url = `${CMS_API_BASE}${path}`;
   
-  const res = await fetch(url, {
-    headers: {
-      'X-Site-Id': SITE_ID,
-    },
-  });
-  
-  if (!res.ok) {
-    throw new Error(`CMS API error: ${res.status} ${res.statusText}`);
+  try {
+    const res = await fetch(url, {
+      headers: {
+        'X-Site-Id': SITE_ID,
+      },
+    });
+    
+    if (!res.ok) {
+      console.error(`[CMS API] Request failed: ${res.status} ${res.statusText} - ${url}`);
+      throw new Error(`CMS API error: ${res.status} ${res.statusText}`);
+    }
+    
+    const body: ApiResponse<T> = await res.json();
+    
+    if (!body.success) {
+      console.error(`[CMS API] Response error: ${body.error} - ${url}`);
+      throw new Error(body.error || 'CMS API error');
+    }
+    
+    return body.data as T;
+  } catch (error) {
+    if (error instanceof Error && error.message.startsWith('CMS API')) {
+      throw error;
+    }
+    console.error(`[CMS API] Network error: ${error} - ${url}`);
+    throw error;
   }
-  
-  const body: ApiResponse<T> = await res.json();
-  
-  if (!body.success) {
-    throw new Error(body.error || 'CMS API error');
-  }
-  
-  return body.data as T;
 }
 
 export async function getTags(): Promise<string[]> {

@@ -8,8 +8,6 @@ interface Props {
 }
 
 const { coupon, store } = Astro.props;
-const encodedId = encodeCouponLink(store.domain, coupon.id);
-const isValid = coupon.isValid !== 0;
 ---
 
 <div class="card p-4 md:p-6">
@@ -41,15 +39,19 @@ const isValid = coupon.isValid !== 0;
           )}
         </div>
         
-        {isValid && (
+        {coupon.isValid !== 0 && (
           <span class="badge-verified flex-shrink-0">Verified</span>
         )}
       </div>
 
-      <div class="mt-4 flex flex-wrap items-center gap-3">
+      {coupon.disInfo && (
+        <p class="mt-3 text-sm font-semibold text-success">{coupon.disInfo}</p>
+      )}
+
+      <div class="mt-3 flex flex-wrap items-center gap-3">
         {coupon.type === 'code' && coupon.code ? (
           <a
-            href={`/detail/btoa-${encodedId}`}
+            href={`/detail/${encodeCouponLink(store.domain, coupon.id)}`}
             class="btn-primary text-sm px-4 py-2"
           >
             Show Code

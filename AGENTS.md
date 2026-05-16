@@ -150,6 +150,53 @@ Structure code for future German market support:
 - Use consistent date/currency formatting
 - Avoid hardcoded UK-specific text in components
 
+## Coding Principles
+
+### 1. Minimum Change
+- Only modify what is necessary to solve the current task
+- Do not refactor unrelated code "while you're at it"
+- If you notice a bug unrelated to the task, report it but do not fix it unless asked
+
+### 2. Component Extraction
+- Extract reusable UI patterns into separate components
+- If a component exceeds 80 lines, consider splitting it
+- If the same JSX pattern appears 2+ times, extract it
+
+### 3. Type Safety
+- Never use `any` - use `unknown` or proper types
+- Every API response must have a corresponding TypeScript interface
+- Every component prop must have a typed interface
+- Use `as const` for literal unions when appropriate
+
+### 4. Single Responsibility
+- Pages: data fetching + layout composition
+- Components: rendering + interaction logic
+- Lib: pure utility functions, no side effects
+- API routes: request handling + response formatting
+
+### 5. Build Verification
+- After every code change, run `npm run build` to verify
+- Do not proceed to the next task if the build fails
+- Fix build errors before asking for review
+
+### 6. Naming Conventions
+- Components: PascalCase (`CouponCard`)
+- Files: kebab-case (`coupon-card.astro`) - except for index pages
+- Variables/functions: camelCase (`encodeCouponLink`)
+- Constants: UPPER_SNAKE_CASE (`CMS_API_BASE`)
+- Types/interfaces: PascalCase (`SiteStoreDetail`)
+
+### 7. Tailwind Only
+- Use only Tailwind utility classes
+- No inline styles (`style="..."`)
+- No CSS modules
+- Custom animations go in `src/styles/global.css` under `@layer components`
+
+### 8. Error Boundaries
+- Every API call must have try/catch
+- Provide fallback UI for empty/error states
+- Never let unhandled errors reach the user
+
 ## Code Review Checklist
 
 Before committing:

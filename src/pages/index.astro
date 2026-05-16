@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SEO from '../components/SEO.astro';
 import HeroStats from '../components/HeroStats.astro';
+import SectionTitle from '../components/SectionTitle.astro';
 import CouponCard from '../components/CouponCard.astro';
 import StoreCard from '../components/StoreCard.astro';
 import { getSiteStats, getLatestCoupons, getPopularStores } from '../lib/cms-client';
@@ -13,20 +14,20 @@ let popularStores: SiteStoreSummary[] = [];
 
 try {
   stats = await getSiteStats();
-} catch {
-  // Use fallback values
+} catch (e) {
+  console.error('[Homepage] Failed to fetch site stats:', e);
 }
 
 try {
   latestCoupons = await getLatestCoupons(10);
-} catch {
-  // Empty fallback
+} catch (e) {
+  console.error('[Homepage] Failed to fetch latest coupons:', e);
 }
 
 try {
   popularStores = await getPopularStores(12);
-} catch {
-  // Empty fallback
+} catch (e) {
+  console.error('[Homepage] Failed to fetch popular stores:', e);
 }
 ---
 
@@ -55,34 +56,36 @@ try {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
     <!-- Trending Deals -->
     <section class="mb-12 md:mb-16">
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Trending Deals</h2>
-        <a href="/stores" class="text-sm font-medium text-primary hover:text-primary-hover">
-          View all &rarr;
-        </a>
-      </div>
+      <SectionTitle title="Trending Deals" href="/stores" />
       
-      <div class="space-y-4">
-        {latestCoupons.map((item) => (
-          <CouponCard coupon={item} store={item.siteStore} />
-        ))}
-      </div>
+      {latestCoupons.length > 0 ? (
+        <div class="space-y-4">
+          {latestCoupons.map((item) => (
+            <CouponCard coupon={item} store={item.siteStore} />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12 bg-white rounded-lg border border-gray-200">
+          <p class="text-gray-500">No deals available at the moment. Check back soon!</p>
+        </div>
+      )}
     </section>
 
     <!-- Popular Stores -->
     <section>
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Popular Stores</h2>
-        <a href="/stores" class="text-sm font-medium text-primary hover:text-primary-hover">
-          View all &rarr;
-        </a>
-      </div>
+      <SectionTitle title="Popular Stores" href="/stores" />
       
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        {popularStores.map((store) => (
-          <StoreCard store={store} />
-        ))}
-      </div>
+      {popularStores.length > 0 ? (
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {popularStores.map((store) => (
+            <StoreCard store={store} />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12 bg-white rounded-lg border border-gray-200">
+          <p class="text-gray-500">No stores available at the moment.</p>
+        </div>
+      )}
     </section>
   </div>
 </BaseLayout>
