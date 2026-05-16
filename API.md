@@ -37,7 +37,7 @@ GET /api/site/tags
 传入一组域名，返回每个域名对应的简要商家信息（用于卡片展示）。
 
 ```
-GET /api/site/stores/by-domains?domains=nike.com,adidas.com,sephora.com
+GET /api/site/stores/by-domains?domains=nike.com,adidas.co.uk,sephora.com
 ```
 
 ### 请求参数
