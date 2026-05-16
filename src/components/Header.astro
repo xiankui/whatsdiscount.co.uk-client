@@ -1,11 +1,12 @@
 ---
-import { getTags } from '../lib/cms-client';
+import { getTopMenus } from '../lib/cms-client';
+import type { TopMenuItem } from '../lib/types';
 
-let tags: string[] = [];
+let menuItems: TopMenuItem[] = [];
 try {
-  tags = await getTags();
+  menuItems = await getTopMenus();
 } catch {
-  tags = [];
+  menuItems = [];
 }
 ---
 
@@ -20,14 +21,14 @@ try {
         <span class="text-xl font-bold text-gray-900">WhatsDiscount</span>
       </a>
 
-      <!-- Tags Navigation (Desktop) -->
+      <!-- Top Navigation (Desktop) -->
       <nav class="hidden lg:flex items-center space-x-1 flex-1 mx-6 overflow-x-auto">
-        {tags.map((tag) => (
+        {menuItems.map((item) => (
           <a
-            href={`/tag-${tag.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`}
+            href={item.path}
             class="btn-ghost whitespace-nowrap text-sm"
           >
-            {tag}
+            {item.name}
           </a>
         ))}
       </nav>
@@ -58,14 +59,14 @@ try {
       </div>
     </div>
 
-    <!-- Mobile Tags Navigation -->
+    <!-- Mobile Navigation -->
     <nav class="lg:hidden py-3 -mx-4 px-4 overflow-x-auto flex space-x-2 border-t border-gray-100">
-      {tags.map((tag) => (
+      {menuItems.map((item) => (
         <a
-          href={`/tag-${tag.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`}
+          href={item.path}
           class="tag whitespace-nowrap text-sm"
         >
-          {tag}
+          {item.name}
         </a>
       ))}
     </nav>

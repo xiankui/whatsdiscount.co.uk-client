@@ -487,24 +487,26 @@ GET /api/site/decoration?key=index-popular-brands
 
 ```json
 {
-  "success": true,
-  "data": [
+  "success":true,
+  "data":[
     {
-      "domain": "nike.com",
-      "pics": ["https://cdn.example.com/banner-nike.jpg"],
-      "txts": ["全场满减，限时优惠", "新品上市，折扣高达 50%"]
+      "domain":"zara.com",
+      "pic":"https://pics.dibsale.com/cdn-cgi/image/width=640/0467311cd2258b40ee3b4f7fd9fe7752.jpg",
+      "logo":"logos/zara.com",
+      "name":"Zara"
     },
-    {
-      "domain": "adidas.com",
-      "pics": ["https://cdn.example.com/banner-adidas.jpg"],
-      "txts": ["运动装备特卖"]
-    },
-    {
-      "pics": ["https://cdn.example.com/global-banner.jpg"],
-      "txts": ["全站通用装修文字"]
-    }
   ]
 }
+```
+
+获取顶部导航类别接口 Header.astro
+
+```
+GET /api/site/decoration?key=layout-top-menus
+```
+
+```json
+{"success":true,"data":[{"name":"Fashion","path":"/tag-fashion"}]
 ```
 
 > **NOTE**

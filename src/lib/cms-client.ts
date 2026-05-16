@@ -88,6 +88,10 @@ export async function getPopularStores(limit: number = 10) {
   return cmsFetch(`/api/site/stores/popular?limit=${limit}`);
 }
 
+export async function getTopMenus(): Promise<TopMenuItem[]> {
+  return cmsFetch<TopMenuItem[]>('/api/site/decoration?key=layout-top-menus');
+}
+
 export async function getDecoration(key: string) {
   return cmsFetch(`/api/site/decoration?key=${encodeURIComponent(key)}`);
 }

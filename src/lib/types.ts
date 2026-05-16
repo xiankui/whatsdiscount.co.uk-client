@@ -80,6 +80,11 @@ export interface SiteStats {
   couponCount: number;
 }
 
+export interface TopMenuItem {
+  name: string;
+  path: string;
+}
+
 export interface Decoration {
   domain?: string;
   pics: string[];
