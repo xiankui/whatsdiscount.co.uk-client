@@ -2,6 +2,8 @@
 
 > UK coupon aggregation site | Astro + React + Tailwind CSS | Cloudflare Pages
 
+**⚡ FIRST: Read `CONTEXT.md` for a compressed project overview — it contains everything you need to start working immediately.**
+
 ## Project Overview
 
 WhatsDiscount is a coupon/voucher aggregation website targeting the UK market. The site aggregates promo codes and deals from various retailers, presenting them in a user-friendly format optimized for SEO and conversions.
