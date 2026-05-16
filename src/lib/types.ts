@@ -85,6 +85,13 @@ export interface TopMenuItem {
   path: string;
 }
 
+export interface DecorationBrand {
+  domain: string;
+  pic: string;
+  logo: string;
+  name: string;
+}
+
 export interface Decoration {
   domain?: string;
   pics: string[];

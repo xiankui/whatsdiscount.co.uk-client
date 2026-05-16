@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WhatsDiscount | UK's Most Trusted Coupon Destination</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;700;800&amp;family=JetBrains+Mono:wght@600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#324863",
+                    "on-secondary": "#ffffff",
+                    "glass-border": "rgba(255, 255, 255, 0.3)",
+                    "secondary": "#4a607c",
+                    "on-surface-variant": "#5e3f3a",
+                    "on-primary-container": "#ffdad4",
+                    "on-surface": "#291714",
+                    "secondary-fixed-dim": "#b1c8e9",
+                    "on-secondary-container": "#4b617d",
+                    "inverse-on-surface": "#ffedea",
+                    "surface": "#fff8f6",
+                    "primary": "#9e0000",
+                    "inverse-surface": "#402b28",
+                    "electric-red": "#E60000",
+                    "on-secondary-fixed": "#021c36",
+                    "surface-container": "#ffe9e6",
+                    "on-background": "#291714",
+                    "on-tertiary-fixed": "#1b1c19",
+                    "midnight-navy": "#00162E",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d2e4ff",
+                    "on-tertiary-container": "#e4e3de",
+                    "secondary-container": "#c5dcfd",
+                    "surface-container-high": "#ffe2dd",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#e8bdb6",
+                    "surface-container-low": "#fff0ee",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#c8c6c2",
+                    "surface-variant": "#fddbd5",
+                    "tertiary": "#4d4d4a",
+                    "primary-container": "#cc0000",
+                    "primary-fixed": "#ffdad4",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#ffb4a8",
+                    "background": "#fff8f6",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#ffb4a8",
+                    "on-primary-fixed": "#410000",
+                    "glass-fill": "rgba(255, 255, 255, 0.7)",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#f5d2cd",
+                    "surface-tint": "#c00000",
+                    "on-primary-fixed-variant": "#930000",
+                    "surface-container-highest": "#fddbd5",
+                    "tertiary-fixed": "#e4e2dd",
+                    "surface-bright": "#fff8f6",
+                    "outline": "#926e69",
+                    "tertiary-container": "#656561",
+                    "on-tertiary-fixed-variant": "#474744"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "48px",
+                    "stack-md": "16px",
+                    "container-max": "1280px",
+                    "stack-sm": "8px",
+                    "margin-mobile": "20px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "price-lg": ["Plus Jakarta Sans"],
+                    "label-caps": ["JetBrains Mono"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "price-lg": ["28px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "800"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .ticket-notch {
+            position: relative;
+        }
+        .ticket-notch::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: #fff8f6; /* surface color */
+            border-radius: 50%;
+            z-index: 10;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .custom-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased">
+<!-- TopNavBar -->
+<header class="bg-glass-fill dark:bg-midnight-navy/80 docked full-width top-0 sticky backdrop-blur-md border-b border-glass-border shadow-sm z-50">
+<nav class="flex justify-between items-center w-full px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="text-headline-md font-headline-md font-bold text-midnight-navy dark:text-surface">WhatsDiscount</div>
+<div class="hidden md:flex items-center gap-stack-lg">
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary text-body-md font-body-md" href="#">Brands</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors text-body-md font-body-md hover:text-electric-red transition-all duration-300" href="#">Fashion</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors text-body-md font-body-md hover:text-electric-red transition-all duration-300" href="#">Home &amp; Garden</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors text-body-md font-body-md hover:text-electric-red transition-all duration-300" href="#">Sports</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors text-body-md font-body-md hover:text-electric-red transition-all duration-300" href="#">Blog</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="scale-95 active:scale-90 transition-transform p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined text-midnight-navy">search</span>
+</button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative pt-stack-lg pb-stack-lg px-margin-desktop text-center overflow-hidden">
+<div class="absolute inset-0 -z-10 opacity-10 flex justify-center items-center pointer-events-none">
+<span class="text-[400px] font-bold text-midnight-navy select-none">%</span>
+</div>
+<p class="font-label-caps text-label-caps text-electric-red uppercase tracking-widest mb-4">UK's Most Trusted Coupon Destination</p>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-stack-md max-w-4xl mx-auto">
+                Save More on <span class="italic text-electric-red">Every</span> Purchase
+            </h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto mb-stack-lg">
+                Discover hand-tested discount codes and exclusive vouchers from hundreds of top UK retailers.
+            </p>
+<div class="max-w-xl mx-auto glass-card rounded-xl p-2 flex items-center shadow-lg mb-stack-lg">
+<span class="material-symbols-outlined ml-4 text-secondary">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 px-4 py-3 text-body-md font-body-md text-midnight-navy" placeholder="Search for brands or products..." type="text"/>
+<button class="bg-electric-red text-white font-bold px-8 py-3 rounded-lg hover:scale-105 transition-transform active:scale-95">Search</button>
+</div>
+<button class="font-body-md text-white bg-midnight-navy px-8 py-3 rounded-full flex items-center gap-2 mx-auto hover:bg-primary transition-colors">
+                Browse All Vouchers
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</section>
+<!-- Quick Access Pills -->
+<section class="px-margin-desktop py-stack-md mb-stack-lg">
+<div class="flex gap-4 overflow-x-auto custom-scroll max-w-container-max mx-auto pb-4">
+<a class="flex items-center gap-2 px-6 py-2 rounded-full border border-outline-variant bg-white shadow-sm hover:border-electric-red hover:shadow-md transition-all whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-electric-red">confirmation_number</span>
+<span class="font-label-caps text-label-caps uppercase text-midnight-navy">COUPONS</span>
+</a>
+<a class="flex items-center gap-2 px-6 py-2 rounded-full border border-outline-variant bg-white shadow-sm hover:border-electric-red hover:shadow-md transition-all whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-blue-500">new_releases</span>
+<span class="font-label-caps text-label-caps uppercase text-midnight-navy">NEW25</span>
+</a>
+<a class="flex items-center gap-2 px-6 py-2 rounded-full border border-outline-variant bg-white shadow-sm hover:border-electric-red hover:shadow-md transition-all whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-green-500">local_activity</span>
+<span class="font-label-caps text-label-caps uppercase text-midnight-navy">DAYRADISSON</span>
+</a>
+<a class="flex items-center gap-2 px-6 py-2 rounded-full border border-outline-variant bg-white shadow-sm hover:border-electric-red hover:shadow-md transition-all whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-orange-500">redeem</span>
+<span class="font-label-caps text-label-caps uppercase text-midnight-navy">WELCOME10</span>
+</a>
+<a class="flex items-center gap-2 px-6 py-2 rounded-full border border-outline-variant bg-white shadow-sm hover:border-electric-red hover:shadow-md transition-all whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-purple-500">verified</span>
+<span class="font-label-caps text-label-caps uppercase text-midnight-navy">SP-H9N3KL-VIP</span>
+</a>
+<a class="flex items-center gap-2 px-6 py-2 rounded-full border border-outline-variant bg-white shadow-sm hover:border-electric-red hover:shadow-md transition-all whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-red-500">local_shipping</span>
+<span class="font-label-caps text-label-caps uppercase text-midnight-navy">FREEDELIVERY</span>
+</a>
+</div>
+</section>
+<!-- Featured Brands -->
+<section class="px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="group relative overflow-hidden rounded-xl h-80 shadow-md hover:shadow-xl transition-shadow">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A luxurious bedroom setting in a premium UK home, featuring high ceilings, elegant drapes, and a classic fireplace. The lighting is warm and inviting, emphasizing a sense of comfort and luxury. The aesthetic is clean and modern, matching a sophisticated retail and home lifestyle brand palette with soft whites and deep navy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAph1u33XKQzxRfqy1_nzDOGm5xijkxD_FBgAF8jlRBGFQGm6fEyAbwnZ1rvkk6IRYoqGH0renk3FjPTXwgFHSLf-plTIUcbgNiMwYUfgOFMZDDQScgHvPauhu2-lTrv57a7gPEADpI9IUccmXBvBIqrX4t2_rt43ZDsrZey29uv5dVWkS6dJuSGz6PNSYgynmestQZYPtycS6aAAUM509bAfuoSi8-nm3kZuoqbmEXxbT4VpicOzcPvcixeBkCCvwzKr7EgXXnAAu"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight-navy/80 to-transparent"></div>
+<div class="absolute bottom-6 left-6 text-white">
+<div class="bg-white p-2 rounded mb-4 inline-block">
+<img class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWCR58EH3tVMil1v2bkdS5TnPazdyf5qYrX-HgeZIZnAJlezqWVHURQ-ZXtyr9aN8fJpg5qGfwZMwPlTFbT4kj-muaS76WiIFbDROqA6AE0zycrqy-0Sz0Qd5-aVEgYuyPo51zHcazbzFlR6IkSRLVe9huW8aGeG0cJmdJnOBRUItUoIkxijBVp_6a51CwkYRfjgFvQKCGz7eLMR88Po7eXszrqL4_7S0Rvjc5Tra6dmhLOcL0NUS58HtUYdRI7FYNDi5c2ofFJT27"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm">PrettyLittleThing</h3>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl h-80 shadow-md hover:shadow-xl transition-shadow">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A moody black and white fashion editorial photograph featuring two models in high-end apparel against a minimalist industrial backdrop. The lighting is dramatic with strong highlights and shadows, creating a high-fashion atmosphere. The style is authoritative and sophisticated, perfectly capturing the premium retail essence of the WhatsDiscount design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwJDtS2UnCfhKlUsWO97UKrPbpQVpu2qhleliF8YGjeS7nSDFdBgJUobM2pxz_F3wQ3kkC1p5iX882_TsYhmPdCQKxBV1mwGqNnolfpkWjCyfDw51cwhTAvClhgFx0L5FdIP16D_RRH51s-fi2xCJdy_ukHSyRFj8-jN7dCCXSWd86CflacZNG_LlY8gfFxRW60nct1dd1ZR8MO67yGKyFzjBrv4aUCIq4e7g2hTwNtc5-QjJDuPPkx0VxPUAUFIR6vuorY6yFxoO0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight-navy/80 to-transparent"></div>
+<div class="absolute bottom-6 left-6 text-white">
+<div class="bg-white p-2 rounded mb-4 inline-block">
+<img class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxhGykN13914IqaCik9yJ1ODqgP4wDUWoi4wTP3gXdoOIcfwOFQH_MLGuyzTL0fYGvhz3gUVQNzm243gptB7wjYP0w6stcNpK7sdW76jlcLsFCWaw7e9cKkz4E4hzhgSF7zL344Ib9NGvZ0b6K4-L52xwyv2JTXAknNtQQ6_8gr3E7hBjTldbA20xIiKvfAb_PjsDYiseHWQmVviyfXh3wBCBqmY6FI70RcSplYEAVniORt12Qlcxds7hrlHCGLM7sBc-qH7gmCXAg"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm">ZARA</h3>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl h-80 shadow-md hover:shadow-xl transition-shadow">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Modern high-performance athletic footwear displayed in a clean, minimalist urban environment with soft overcast lighting. The composition focuses on the design details and high-quality materials of the sneakers. The overall color palette is cool and energetic, featuring subtle accents of red and navy that align with the brand's sophisticated identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUFjfUo8QEh3_YLQVxFNjyjQz8s-0H0rdRaxnJTgbjabMf3PzKo_9EzEYBil_cL3BzKL0kbd5nzLXkQRvP02QB1ncl46nXIRUQo_Yl7erMXYL1sOtZJB95CrbfB1bUsXGw0ykCFA_WBssUKhT0M8BBiQzv8wrfHtsysyXVzGoxxi0xjL6z_w4IoUuZgqSn8qdBmxedM6duU8ota7sc4knMaAULpRkRai1Lj03ybevtSo2DOZx4X1kOz9urbM2fqLzpXc8SMaYySaMK"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight-navy/80 to-transparent"></div>
+<div class="absolute bottom-6 left-6 text-white">
+<div class="bg-white p-2 rounded mb-4 inline-block">
+<img class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK9mB3I0mYW6Gkyc-RPAn041Wb2FVofdugx0uDmkDHUIp-ZtAJh32NuuiblTY-cEwK-vxCy1gdwl05lENTVuNNWeFPDdTyzJZBt5rqsZSog5ZVagnek2bjIB1nawIy3_xmPoZnEpO7NhPFwwwmWlBVyYlYOdKLBCHHWyTE48RYf7lgm9u4NVEsKDjkSGQSf6LbLyTwHuu11oPvaEfkvsNuCD4afSXmKUgYJrkDuBveEQ-15Ry-fe3BjRi_Ohl4wFbo-x3Gi7O-_kGP"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm">Adidas</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Today's Top Coupons -->
+<section class="bg-surface-container-low px-margin-desktop py-stack-lg">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-stack-lg">
+<p class="font-label-caps text-label-caps text-electric-red mb-2">Latest Offers</p>
+<h2 class="font-headline-md text-headline-md text-midnight-navy">Today's Top <span class="italic text-electric-red">Coupons</span></h2>
+<p class="text-secondary">Hand-picked deals and voucher codes updated every hour</p>
+</div>
+<div class="space-y-4 max-w-4xl mx-auto">
+<!-- Ticket Card 1 -->
+<div class="bg-white rounded-xl shadow-sm border border-midnight-navy/5 overflow-hidden flex flex-col md:flex-row hover:shadow-md transition-shadow group">
+<div class="p-6 md:w-1/4 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-outline-variant ticket-notch">
+<img alt="Tory Burch" class="h-12 w-12 object-contain mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkGvtIhepcz8E_TCEZhER4Y8uVarryN974ZyJk8MwXI7npTYlstu2Ct89YB5SXLeaXrwHZcxa9dTYj_azh9uT65YzIze3bVZqgNbJ4fYRwamay3yjKST7DbY1UMzHF15Ph1YSY8Pphl9dWqR7atwV5WBk6muvcgH_DEFymCEYkzPQxEcaVxsHjd4JKrP0J15mbhgqqGXBLcwAeIH5N6a7D4fvLzudyGZA2-AKQpgI6QUDENPjS4kk77xwM0lTmGlml8E1xua5T_epd"/>
+<div class="text-center">
+<span class="block font-price-lg text-price-lg text-electric-red">15%</span>
+<span class="font-label-caps text-label-caps uppercase text-secondary">OFF CODE</span>
+</div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-center">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-body-lg font-bold text-midnight-navy">15% off orders over £200 at Tory Burch</h3>
+<span class="text-label-caps text-secondary font-label-caps">16/05/2024</span>
+</div>
+<p class="text-secondary text-body-md mb-4">1075 shoppers used today</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-600 text-[18px]">verified</span>
+<span class="text-label-caps font-label-caps text-green-600 uppercase">Verified</span>
+</div>
+</div>
+<div class="p-6 md:w-1/4 bg-surface-container flex items-center justify-center">
+<button class="bg-electric-red text-white font-bold px-6 py-3 rounded-lg w-full group-hover:scale-105 transition-transform">
+<span class="font-label-caps text-[10px] block opacity-80 mb-1">Copy code</span>
+                                U*-*D*B*L*7*T...
+                            </button>
+</div>
+</div>
+<!-- Ticket Card 2 -->
+<div class="bg-white rounded-xl shadow-sm border border-midnight-navy/5 overflow-hidden flex flex-col md:flex-row hover:shadow-md transition-shadow group">
+<div class="p-6 md:w-1/4 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-outline-variant ticket-notch">
+<img alt="Thomas Cook" class="h-12 w-12 object-contain mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoD9xuX-D0nX0vMg6-W7zlRv-StNXNswjfzWx2Fgvu2Z7T-W-0O8AGsQ5EdRALpLGqJ-KpYEb94eFOPwtuTdrzI4c0QezqieKgYRfXmOaJOL3IfYKNXZoK5IN3A5B6lAFR2_z9ag2Vqt0OlKO8fokklfE2QeMwbga4skAc1mlZ396h59VtLspngCflHxyW9-bHfAGAphUaiAGaTukluundUa8RhjSAH-WFgmC0JPya057fNLByFonMgCbop3XyTup6xcgqbkK2H1kZ"/>
+<div class="text-center">
+<span class="material-symbols-outlined text-electric-red text-[40px]">sell</span>
+<span class="block font-label-caps text-label-caps uppercase text-secondary">DEAL</span>
+</div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-center">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-body-lg font-bold text-midnight-navy">Save an Extra 50% on Exclusive Selection</h3>
+<span class="text-label-caps text-secondary font-label-caps">16/05/2024</span>
+</div>
+<p class="text-secondary text-body-md mb-4">1088 shoppers used today</p>
+</div>
+<div class="p-6 md:w-1/4 bg-surface-container flex items-center justify-center">
+<button class="bg-electric-red text-white font-bold px-6 py-3 rounded-lg w-full group-hover:scale-105 transition-transform">
+<span class="font-label-caps text-[10px] block opacity-80 mb-1">Get Deal</span>
+                                S*V*5*
+                            </button>
+</div>
+</div>
+<!-- Ticket Card 3 -->
+<div class="bg-white rounded-xl shadow-sm border border-midnight-navy/5 overflow-hidden flex flex-col md:flex-row hover:shadow-md transition-shadow group">
+<div class="p-6 md:w-1/4 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-outline-variant ticket-notch">
+<img alt="Zurich" class="h-12 w-12 object-contain mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCItAxC_oh9Y27Mm2wblJT8jHIyAtowycyzYf9ro8HqbcWnJMEgXLxp4Fc_oU9pcvMizdDQsZVC2zZ62b5rLgZgSPkq50Jq1qIZh5qZxcwfuNgh1tmGKHh2pywDAvXnYbW9BHKpT-0XDJucko6dD6xYBHfTupaR-phDySn_k90H61mHFFjMrF2xm15OYXwKyNed6n8746tNMp-VJtGHFRPolbEpq-oYO_F6D9g_P-FAV31eou-OVwe3d26_PvGUv0Nxb6f8WOx_o82a"/>
+<div class="text-center">
+<span class="material-symbols-outlined text-electric-red text-[40px]">mail</span>
+<span class="block font-label-caps text-label-caps uppercase text-secondary">OFFER</span>
+</div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-center">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-body-lg font-bold text-midnight-navy">Grab best discounts and offers with email sign-up at Zurich</h3>
+<span class="text-label-caps text-secondary font-label-caps">16/05/2024</span>
+</div>
+<p class="text-secondary text-body-md mb-4">1029 shoppers used today</p>
+</div>
+<div class="p-6 md:w-1/4 bg-surface-container flex items-center justify-center">
+<button class="bg-electric-red text-white font-bold px-6 py-3 rounded-lg w-full group-hover:scale-105 transition-transform">
+<span class="font-label-caps text-[10px] block opacity-80 mb-1">Get Offer</span>
+                                S*G*U*
+                            </button>
+</div>
+</div>
+</div>
+<div class="mt-stack-lg text-center">
+<button class="font-body-md text-white bg-midnight-navy px-8 py-3 rounded-full flex items-center gap-2 mx-auto hover:bg-electric-red transition-all">
+                        Browse All Vouchers
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Categories -->
+<section class="px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="text-center mb-stack-lg">
+<p class="font-label-caps text-label-caps text-electric-red mb-2 uppercase tracking-widest">Explore</p>
+<h2 class="font-headline-md text-headline-md text-midnight-navy">Browse by <span class="italic text-electric-red">Category</span></h2>
+</div>
+<div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Fashion</a>
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Beauty</a>
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Electronics</a>
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Home</a>
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Travel</a>
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Health</a>
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Gifts</a>
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Sports</a>
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Jewellery</a>
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Automotive</a>
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Pets</a>
+<a class="px-6 py-2 rounded-full border border-outline-variant bg-white text-body-md text-midnight-navy hover:bg-electric-red hover:text-white hover:border-electric-red transition-all shadow-sm" href="#">Finance</a>
+</div>
+</section>
+<!-- Value Props -->
+<section class="bg-surface-container px-margin-desktop py-stack-lg">
+<div class="max-w-container-max mx-auto text-center">
+<p class="font-label-caps text-label-caps text-electric-red mb-2 uppercase tracking-widest">Why Choose Us</p>
+<h2 class="font-headline-md text-headline-md text-midnight-navy mb-stack-lg">Why <span class="italic text-electric-red">WhatsDiscount</span>?</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-white p-8 rounded-xl shadow-sm border border-outline-variant/30 flex flex-col items-center hover:shadow-md transition-shadow">
+<div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-electric-red text-[32px]">bolt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-midnight-navy mb-4">Instant Savings</h3>
+<p class="text-secondary text-body-md">One-click copy and instant redirect to your favourite stores. Fast, simple, seamless.</p>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-sm border border-outline-variant/30 flex flex-col items-center hover:shadow-md transition-shadow">
+<div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-electric-red text-[32px]">verified_user</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-midnight-navy mb-4">Hand Verified</h3>
+<p class="text-secondary text-body-md">Every code is manually tested by our London-based team to guarantee it works.</p>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-sm border border-outline-variant/30 flex flex-col items-center hover:shadow-md transition-shadow">
+<div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-electric-red text-[32px]">sell</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-midnight-navy mb-4">Exclusive Codes</h3>
+<p class="text-secondary text-body-md">VIP access to codes negotiated directly with top UK retailers and brands.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="text-center mb-stack-lg">
+<p class="font-label-caps text-label-caps text-electric-red mb-2 uppercase tracking-widest">Support</p>
+<h2 class="font-headline-md text-headline-md text-midnight-navy">Frequently Asked <span class="italic text-electric-red">Questions</span></h2>
+<p class="text-secondary">Everything you need to know about finding and using UK discount codes</p>
+</div>
+<div class="max-w-3xl mx-auto divide-y divide-outline-variant/30">
+<div class="py-4">
+<button class="w-full flex justify-between items-center text-left text-body-lg font-bold text-midnight-navy group">
+                        What are discount codes and how do they work in the UK?
+                        <span class="material-symbols-outlined group-hover:text-electric-red transition-colors">add</span>
+</button>
+</div>
+<div class="py-4">
+<button class="w-full flex justify-between items-center text-left text-body-lg font-bold text-midnight-navy group">
+                        How can I find the best UK discount codes?
+                        <span class="material-symbols-outlined group-hover:text-electric-red transition-colors">add</span>
+</button>
+</div>
+<div class="py-4">
+<button class="w-full flex justify-between items-center text-left text-body-lg font-bold text-midnight-navy group">
+                        Are the voucher codes on WhatsDiscount free to use?
+                        <span class="material-symbols-outlined group-hover:text-electric-red transition-colors">add</span>
+</button>
+</div>
+<div class="py-4">
+<button class="w-full flex justify-between items-center text-left text-body-lg font-bold text-midnight-navy group">
+                        Why is my discount code not working?
+                        <span class="material-symbols-outlined group-hover:text-electric-red transition-colors">add</span>
+</button>
+</div>
+<div class="py-4">
+<button class="w-full flex justify-between items-center text-left text-body-lg font-bold text-midnight-navy group">
+                        How often are new UK discount codes added?
+                        <span class="material-symbols-outlined group-hover:text-electric-red transition-colors">add</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="bg-midnight-navy py-20 px-margin-desktop overflow-hidden relative">
+<div class="absolute right-0 top-0 opacity-10 pointer-events-none">
+<span class="text-[600px] font-bold text-white select-none leading-none">%</span>
+</div>
+<div class="max-w-4xl mx-auto text-center relative z-10">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-4">Never Miss a <span class="italic text-electric-red">Deal</span></h2>
+<p class="text-secondary-fixed-dim text-body-lg mb-stack-lg">Join over 50,000 savvy UK shoppers who receive our weekly digest of exclusive discount codes.</p>
+<form class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
+<input class="flex-grow bg-white/10 border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/40 focus:ring-2 focus:ring-electric-red outline-none transition-all" placeholder="Enter your email address" type="email"/>
+<button class="bg-white text-midnight-navy font-bold px-8 py-4 rounded-xl hover:bg-electric-red hover:text-white transition-all">Get Weekly Deals</button>
+</form>
+<div class="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-2 text-white/40 text-label-caps font-label-caps">
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">check</span> NO SPAM</div>
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">check</span> UNSUBSCRIBE ANYTIME</div>
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">check</span> FREE FOREVER</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-midnight-navy dark:bg-surface-container-lowest full-width py-stack-lg border-t border-on-secondary-fixed-variant">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-margin-desktop max-w-container-max mx-auto text-on-primary dark:text-on-surface">
+<div>
+<div class="text-headline-sm font-headline-sm text-surface dark:text-midnight-navy mb-4">WhatsDiscount</div>
+<p class="text-secondary-fixed-dim text-body-md opacity-80 hover:opacity-100 transition-opacity">Your trusted source for the best deals and discount codes in the UK. Helping millions save every day.</p>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-label-caps font-label-caps text-surface opacity-60 mb-2 uppercase">Quick Links</p>
+<div class="flex flex-wrap gap-x-8 gap-y-2">
+<a class="text-secondary-fixed-dim hover:text-surface transition-colors hover:underline decoration-electric-red transition-all text-body-md" href="#">About</a>
+<a class="text-secondary-fixed-dim hover:text-surface transition-colors hover:underline decoration-electric-red transition-all text-body-md" href="#">Privacy</a>
+<a class="text-secondary-fixed-dim hover:text-surface transition-colors hover:underline decoration-electric-red transition-all text-body-md" href="#">Terms</a>
+<a class="text-secondary-fixed-dim hover:text-surface transition-colors hover:underline decoration-electric-red transition-all text-body-md" href="#">Imprint</a>
+<a class="text-secondary-fixed-dim hover:text-surface transition-colors hover:underline decoration-electric-red transition-all text-body-md" href="#">Blog</a>
+</div>
+</div>
+<div class="flex flex-col md:items-end">
+<p class="text-label-caps font-label-caps text-surface opacity-60 mb-4 uppercase">Follow Us</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-electric-red transition-colors" href="#"><span class="material-symbols-outlined text-white">close</span></a>
+<a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-electric-red transition-colors" href="#"><span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">Notebook</span></a>
+<a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-electric-red transition-colors" href="#"><span class="material-symbols-outlined text-white">share</span></a>
+</div>
+</div>
+</div>
+<div class="mt-stack-lg pt-stack-md border-t border-white/5 px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between text-label-caps font-label-caps text-secondary-fixed-dim text-xs">
+<p>© 2024 whatsdiscount.co.uk. All rights reserved. Registered in England &amp; Wales.</p>
+<p class="mt-2 md:mt-0">Made with <span class="text-electric-red">❤</span> for UK shoppers</p>
+</div>
+</footer>
+</body></html>

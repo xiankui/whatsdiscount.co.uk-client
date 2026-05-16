@@ -207,7 +207,6 @@ GET /api/site/coupons/latest?limit=10
   ]
 }
 ```
-
 ---
 
 ## 5. 按标签获取优惠券

@@ -23,7 +23,8 @@ const { title = 'WhatsDiscount', description = '' } = Astro.props;
     <slot name="head" />
   </head>
   <body>
-    <div class="min-h-screen flex flex-col">
+    <div class="min-h-screen flex flex-col relative overflow-x-hidden">
+      <div class="grain-overlay fixed inset-0 z-[100]"></div>
       <Header />
       
       <main class="flex-1">

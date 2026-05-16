@@ -5,77 +5,140 @@ import type { Coupon, SiteStoreSummary } from '../lib/types';
 interface Props {
   coupon: Coupon;
   store: SiteStoreSummary;
+  variant?: 'list' | 'ticket';
 }
 
-const { coupon, store } = Astro.props;
+const { coupon, store, variant = 'ticket' } = Astro.props;
+const encodedId = encodeCouponLink(store.domain, coupon.id);
+const isValid = coupon.isValid !== 0;
+
+const discountText = coupon.disInfo || coupon.title;
+const discountLabel = coupon.type === 'code' ? 'OFF CODE' : 'DEAL';
 ---
 
-<div class="card p-4 md:p-6">
-  <div class="flex flex-col sm:flex-row gap-4">
-    <!-- Store Logo -->
-    <div class="flex-shrink-0">
-      <a href={`/discount/${store.domain}`} class="block w-16 h-16 md:w-20 md:h-20 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden hover:shadow-md transition-shadow">
-        <img
-          src={getImageUrl(store.logoPic)}
-          alt={store.name}
-          class="w-12 h-12 md:w-16 md:h-16 object-contain"
-          loading="lazy"
-        />
-      </a>
+{variant === 'ticket' ? (
+  <div class="bg-white rounded-xl shadow-sm border border-midnight-navy/5 overflow-hidden flex flex-col md:flex-row hover:shadow-md transition-shadow group shimmer-sweep">
+    <!-- Left: Discount Value -->
+    <div class="p-6 md:w-1/4 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-outline-variant/40 relative digital-ticket">
+      <img
+        src={getImageUrl(store.logoPic)}
+        alt={store.name}
+        class="h-12 w-12 object-contain mb-3"
+        loading="lazy"
+      />
+      <div class="text-center">
+        <span class="block text-3xl font-extrabold text-primary leading-tight">{discountText}</span>
+        <span class="label-caps text-on-surface-variant">{discountLabel}</span>
+      </div>
     </div>
 
-    <!-- Coupon Info -->
-    <div class="flex-1 min-w-0">
-      <div class="flex items-start justify-between gap-2">
-        <div class="min-w-0">
-          <a href={`/discount/${store.domain}`} class="text-sm font-medium text-gray-500 hover:text-primary transition-colors">
-            {store.name}
-          </a>
-          <h3 class="text-base md:text-lg font-semibold text-gray-900 mt-1 line-clamp-2">
-            {coupon.title}
-          </h3>
-          {coupon.description && (
-            <p class="text-sm text-gray-500 mt-1 line-clamp-2">{coupon.description}</p>
-          )}
-        </div>
-        
-        {coupon.isValid !== 0 && (
-          <span class="badge-verified flex-shrink-0">Verified</span>
-        )}
+    <!-- Center: Details -->
+    <div class="p-6 flex-grow flex flex-col justify-center">
+      <div class="flex justify-between items-start mb-2">
+        <h3 class="text-lg font-bold text-midnight-navy">{coupon.title}</h3>
       </div>
-
-      {coupon.disInfo && (
-        <p class="mt-3 text-sm font-semibold text-success">{coupon.disInfo}</p>
+      {coupon.description && (
+        <p class="text-on-surface-variant text-sm mb-3 line-clamp-2">{coupon.description}</p>
       )}
+      {isValid && (
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          <span class="label-caps text-success">Verified</span>
+        </div>
+      )}
+    </div>
 
-      <div class="mt-3 flex flex-wrap items-center gap-3">
-        {coupon.type === 'code' && coupon.code ? (
-          <a
-            href={`/detail/${encodeCouponLink(store.domain, coupon.id)}`}
-            class="btn-primary text-sm px-4 py-2"
-          >
-            Show Code
-          </a>
-        ) : (
-          <a
-            href={`/api/r?domain=${store.domain}`}
-            class="btn-primary text-sm px-4 py-2"
-            rel="nofollow noopener"
-            target="_blank"
-          >
-            Get Deal
-          </a>
-        )}
-        
+    <!-- Right: Action -->
+    <div class="p-6 md:w-1/4 bg-surface-container flex items-center justify-center">
+      {coupon.type === 'code' && coupon.code ? (
+        <a
+          href={`/detail/${encodedId}`}
+          class="btn-primary w-full text-center group-hover:scale-105 transition-transform"
+        >
+          <span class="label-caps text-[10px] block opacity-80 mb-0.5">Show Code</span>
+          {coupon.code.length > 12 ? coupon.code.slice(0, 12) + '...' : coupon.code}
+        </a>
+      ) : (
         <a
           href={`/api/r?domain=${store.domain}`}
-          class="text-sm text-gray-500 hover:text-primary transition-colors"
+          class="btn-primary w-full text-center group-hover:scale-105 transition-transform"
           rel="nofollow noopener"
           target="_blank"
         >
-          Go to Store &rarr;
+          <span class="label-caps text-[10px] block opacity-80 mb-0.5">Get Deal</span>
+          Get Deal
         </a>
+      )}
+    </div>
+  </div>
+) : (
+  <div class="card p-4 md:p-6 shimmer-sweep">
+    <div class="flex flex-col sm:flex-row gap-4">
+      <div class="flex-shrink-0">
+        <a href={`/discount/${store.domain}`} class="block w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center overflow-hidden shadow-sm border border-outline-variant/20 hover:shadow-md transition-shadow">
+          <img
+            src={getImageUrl(store.logoPic)}
+            alt={store.name}
+            class="w-10 h-10 md:w-12 md:h-12 object-contain"
+            loading="lazy"
+          />
+        </a>
+      </div>
+
+      <div class="flex-1 min-w-0">
+        <div class="flex items-start justify-between gap-2">
+          <div class="min-w-0">
+            <a href={`/discount/${store.domain}`} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">
+              {store.name}
+            </a>
+            <h3 class="text-base md:text-lg font-bold text-midnight-navy mt-1 line-clamp-2">
+              {coupon.title}
+            </h3>
+            {coupon.description && (
+              <p class="text-sm text-on-surface-variant mt-1 line-clamp-2">{coupon.description}</p>
+            )}
+          </div>
+          
+          {isValid && (
+            <span class="badge-verified flex-shrink-0">Verified</span>
+          )}
+        </div>
+
+        {coupon.disInfo && (
+          <p class="mt-3 text-sm font-bold text-primary">{coupon.disInfo}</p>
+        )}
+
+        <div class="mt-3 flex flex-wrap items-center gap-3">
+          {coupon.type === 'code' && coupon.code ? (
+            <a
+              href={`/detail/${encodedId}`}
+              class="btn-primary text-sm px-4 py-2"
+            >
+              Show Code
+            </a>
+          ) : (
+            <a
+              href={`/api/r?domain=${store.domain}`}
+              class="btn-primary text-sm px-4 py-2"
+              rel="nofollow noopener"
+              target="_blank"
+            >
+              Get Deal
+            </a>
+          )}
+          
+          <a
+            href={`/api/r?domain=${store.domain}`}
+            class="text-sm text-on-surface-variant hover:text-primary transition-colors"
+            rel="nofollow noopener"
+            target="_blank"
+          >
+            Go to Store &rarr;
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+)}

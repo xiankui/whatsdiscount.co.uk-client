@@ -9,31 +9,21 @@ interface Props {
 const { store } = Astro.props;
 ---
 
-<a href={`/discount/${store.domain}`} class="card p-4 md:p-6 flex flex-col items-center text-center group">
-  <div class="w-16 h-16 md:w-20 md:h-20 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden mb-3 group-hover:shadow-md transition-shadow">
+<a href={`/discount/${store.domain}`} class="bg-white/50 p-4 rounded-2xl border border-outline-variant/30 hover:shadow-md transition-all group flex flex-col items-center text-center gap-3">
+  <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm border border-outline-variant/20 overflow-hidden">
     <img
       src={getImageUrl(store.logoPic)}
       alt={store.name}
-      class="w-12 h-12 md:w-16 md:h-16 object-contain"
+      class="w-10 h-10 object-contain"
       loading="lazy"
     />
   </div>
   
-  <h3 class="font-semibold text-gray-900 group-hover:text-primary transition-colors">
+  <span class="font-bold text-midnight-navy group-hover:text-primary transition-colors">
     {store.name}
-  </h3>
+  </span>
   
   {store.couponCount && (
-    <p class="text-sm text-gray-500 mt-1">
-      {store.couponCount} {store.couponCount === 1 ? 'code' : 'codes'}
-    </p>
-  )}
-  
-  {store.coupons && store.coupons.length > 0 && (
-    <div class="mt-3 w-full pt-3 border-t border-gray-100">
-      {store.coupons.slice(0, 2).map((coupon) => (
-        <p class="text-xs text-gray-600 truncate">{coupon.disInfo || coupon.title}</p>
-      ))}
-    </div>
+    <span class="label-caps text-primary">{store.couponCount} ACTIVE VOUCHERS</span>
   )}
 </a>

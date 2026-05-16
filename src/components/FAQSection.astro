@@ -1,0 +1,102 @@
+---
+import SEO from './SEO.astro';
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
+  {
+    question: 'What are discount codes and how do they work in the UK?',
+    answer: 'Discount codes (also known as promo codes or voucher codes) are alphanumeric strings that you enter at checkout on a retailer\'s website to receive a discount on your order. They can offer percentage discounts, fixed amount off, free delivery, or special gifts. Simply copy the code from WhatsDiscount, visit the store, add items to your basket, and paste the code in the promo code field at checkout.',
+  },
+  {
+    question: 'How can I find the best UK discount codes?',
+    answer: 'Browse our homepage for trending deals, search for your favourite store using the search bar, or explore categories like Fashion, Electronics, and Home & Garden. All our codes are hand-tested and verified by our team to ensure they work.',
+  },
+  {
+    question: 'Are the voucher codes on WhatsDiscount free to use?',
+    answer: 'Yes, all voucher codes on WhatsDiscount are completely free to use. We earn a small commission from retailers when you make a purchase through our links, but this never affects the price you pay.',
+  },
+  {
+    question: 'Why is my discount code not working?',
+    answer: 'There are several reasons a code might not work: it may have expired, there could be a minimum spend requirement, it might not apply to sale items, or it could be restricted to certain categories. Always check the terms and conditions listed with each code.',
+  },
+  {
+    question: 'How often are new UK discount codes added?',
+    answer: 'Our team adds and verifies new codes daily. We monitor retailers for new promotions and update our listings regularly to ensure you always have access to the latest discounts.',
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
+    },
+  })),
+};
+---
+
+<SEO
+  title=""
+  description=""
+  structuredData={structuredData}
+/>
+
+<section class="py-12 md:py-16">
+  <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <p class="label-caps text-primary mb-2 uppercase tracking-widest">Support</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-midnight-navy">
+        Frequently Asked <span class="italic text-primary">Questions</span>
+      </h2>
+      <p class="text-on-surface-variant mt-2">Everything you need to know about finding and using UK discount codes</p>
+    </div>
+
+    <div class="max-w-3xl mx-auto divide-y divide-outline-variant/30" id="faq-accordion">
+      {faqs.map((faq, index) => (
+        <div class="py-4">
+          <button
+            class="faq-toggle w-full flex justify-between items-center text-left text-lg font-bold text-midnight-navy group"
+            aria-expanded="false"
+          >
+            {faq.question}
+            <svg class="faq-icon w-5 h-5 text-on-surface-variant group-hover:text-primary transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
+            </svg>
+          </button>
+          <div class="faq-content hidden mt-2 text-on-surface-variant text-base leading-relaxed">
+            {faq.answer}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach((button) => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling as HTMLElement;
+      const icon = button.querySelector('.faq-icon') as SVGElement;
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      
+      button.setAttribute('aria-expanded', String(!isExpanded));
+      content?.classList.toggle('hidden');
+      
+      if (icon) {
+        if (!isExpanded) {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />';
+        } else {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />';
+        }
+      }
+    });
+  });
+</script>

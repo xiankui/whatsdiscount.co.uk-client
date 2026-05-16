@@ -51,21 +51,38 @@ const isValid = (coupon: { isValid?: number }) => coupon.isValid !== 0;
     />
   </head>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-    <!-- Store Header -->
-    <div class="mb-8 md:mb-12">
-      <div class="flex flex-col sm:flex-row items-start gap-4 mb-4">
-        <div class="w-20 h-20 md:w-24 md:h-24 rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+  <main class="flex-grow pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-container-max mx-auto w-full">
+    <!-- Brand Header Section -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-12">
+      <div class="lg:col-span-8 glass-panel p-8 rounded-xl flex items-center gap-6 md:gap-8">
+        <div class="w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center p-4 shadow-sm shrink-0">
           <img
             src={getImageUrl(store.logoPic)}
             alt={store.name}
-            class="w-16 h-16 md:w-20 md:h-20 object-contain"
+            class="w-full h-auto object-contain"
           />
         </div>
-        <div class="flex-1">
-          <h1 class="text-2xl md:text-3xl font-bold text-gray-900">{store.seo.h1}</h1>
+        <div>
+          <h1 class="text-2xl md:text-3xl font-bold text-on-surface mb-2">{store.name}</h1>
+          <p class="text-on-surface-variant leading-relaxed max-w-2xl">{store.about}</p>
+        </div>
+      </div>
+      
+      <!-- Brand Stats Bento Cell -->
+      <div class="lg:col-span-4 glass-panel p-8 rounded-xl flex flex-col justify-between border-l-4 border-primary">
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="label-caps text-on-surface-variant">BRAND INTELLIGENCE</h3>
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        </div>
+        <div class="space-y-6">
+          <div class="flex justify-between items-end">
+            <span class="text-on-surface-variant">Active Vouchers</span>
+            <span class="text-2xl font-bold text-primary">{store.coupons.length}</span>
+          </div>
           {store.tags.length > 0 && (
-            <div class="flex flex-wrap gap-2 mt-3">
+            <div class="flex flex-wrap gap-2">
               {store.tags.map((tag) => (
                 <a
                   href={`/tag-${tag.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`}
@@ -78,143 +95,146 @@ const isValid = (coupon: { isValid?: number }) => coupon.isValid !== 0;
           )}
         </div>
       </div>
-      
-      {store.lastUpdateAt && (
-        <p class="text-sm text-gray-500">
-          Last updated: {formatDate(store.lastUpdateAt)}
-        </p>
-      )}
-    </div>
+    </section>
 
-    <!-- Coupons Section -->
-    <section class="mb-12 md:mb-16">
-      <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">
-        Active Voucher Codes & Deals
-      </h2>
-      
-      <div class="space-y-4">
+    <!-- Main Feed and Sidebar -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+      <!-- Vouchers Feed -->
+      <div class="lg:col-span-8 space-y-6">
+        <h2 class="text-2xl font-bold text-on-surface mb-6">Latest {store.name} Vouchers</h2>
+        
         {store.coupons.map((coupon) => {
           const encodedId = encodeCouponLink(store.domain, coupon.id);
           const valid = isValid(coupon);
+          const discountText = coupon.disInfo || coupon.title;
+          const discountLabel = coupon.type === 'code' ? (coupon.code ? 'OFF CODE' : 'CODE') : 'DEAL';
           
           return (
-            <div class={`card p-4 md:p-6 ${!valid ? 'opacity-60' : ''}`}>
-              <div class="flex flex-col sm:flex-row gap-4">
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-start justify-between gap-2">
-                    <div class="min-w-0">
-                      <h3 class="text-base md:text-lg font-semibold text-gray-900 line-clamp-2">
-                        {coupon.title}
-                      </h3>
-                      {coupon.description && (
-                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">{coupon.description}</p>
-                      )}
+            <div class="bg-white rounded-xl shadow-sm border border-midnight-navy/5 overflow-hidden flex flex-col md:flex-row hover:shadow-md transition-shadow group shimmer-sweep">
+              <!-- Left: Discount Value -->
+              <div class="p-8 md:w-48 flex flex-col justify-center items-center bg-surface-container-low border-r border-dashed border-outline-variant/40 relative digital-ticket text-center">
+                <span class="text-3xl font-extrabold text-primary leading-tight">{discountText}</span>
+                <span class="label-caps text-on-surface-variant mt-1">{discountLabel}</span>
+              </div>
+              
+              <!-- Center: Details -->
+              <div class="flex-grow p-8 flex flex-col justify-between">
+                <div>
+                  {valid && (
+                    <div class="flex items-center gap-2 mb-2">
+                      <svg class="w-4 h-4 text-tertiary" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      <span class="label-caps text-tertiary">VERIFIED</span>
                     </div>
-                    {valid && <span class="badge-verified flex-shrink-0">Verified</span>}
-                  </div>
-
-                  <div class="mt-4 flex flex-wrap items-center gap-3">
-                    {coupon.type === 'code' && coupon.code ? (
-                      <a
-                        href={`/detail/${encodedId}`}
-                        class="btn-primary text-sm px-4 py-2"
-                      >
-                        Show Code
-                      </a>
-                    ) : (
-                      <a
-                        href={`/api/r?domain=${store.domain}`}
-                        class="btn-primary text-sm px-4 py-2"
-                        rel="nofollow noopener"
-                        target="_blank"
-                      >
-                        Get Deal
-                      </a>
-                    )}
-                    
+                  )}
+                  <h3 class="text-xl font-bold text-on-surface">{coupon.title}</h3>
+                  {coupon.description && (
+                    <p class="text-on-surface-variant mt-1">{coupon.description}</p>
+                  )}
+                </div>
+                <div class="flex items-center justify-between mt-6">
+                  <span class="label-caps text-on-surface-variant">
+                    {store.lastUpdateAt ? `UPDATED ${formatDate(store.lastUpdateAt)}` : 'ALWAYS ACTIVE'}
+                  </span>
+                  {coupon.type === 'code' && coupon.code ? (
+                    <a
+                      href={`/detail/${encodedId}`}
+                      class="btn-primary px-8 flex items-center gap-2"
+                    >
+                      GET CODE
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                  ) : (
                     <a
                       href={`/api/r?domain=${store.domain}`}
-                      class="text-sm text-gray-500 hover:text-primary transition-colors"
+                      class="btn-primary px-8 flex items-center gap-2"
                       rel="nofollow noopener"
                       target="_blank"
                     >
-                      Go to Store &rarr;
+                      REVEAL OFFER
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
                     </a>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
           );
         })}
       </div>
-    </section>
 
-    <!-- Saving Tips -->
-    {store.savingTips.length > 0 && (
-      <section class="mb-12 md:mb-16">
-        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">
-          Saving Tips
-        </h2>
-        
-        <div class="space-y-4">
-          {store.savingTips.map((tip) => (
-            <div class="card p-4 md:p-6">
-              <h3 class="font-semibold text-gray-900 mb-2">{tip.title}</h3>
-              <p class="text-sm text-gray-600">{tip.content}</p>
+      <!-- Sidebar Info -->
+      <aside class="lg:col-span-4 space-y-6">
+        {store.savingTips.length > 0 && (
+          <div class="glass-panel p-6 rounded-xl">
+            <h3 class="text-xl font-bold text-on-surface mb-4">Saving Tips</h3>
+            <ul class="space-y-4">
+              {store.savingTips.map((tip) => (
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  <div>
+                    <p class="font-semibold text-on-surface text-sm">{tip.title}</p>
+                    <p class="text-on-surface-variant text-sm mt-0.5">{tip.content}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- FAQ Section -->
+        {store.faqs.length > 0 && (
+          <div class="glass-panel p-6 rounded-xl">
+            <h3 class="text-xl font-bold text-on-surface mb-4">FAQs</h3>
+            <div class="space-y-3" id="store-faq">
+              {store.faqs.map((faq, index) => (
+                <div>
+                  <button
+                    class="store-faq-toggle w-full flex justify-between items-center text-left text-sm font-bold text-on-surface group py-2"
+                    aria-expanded="false"
+                  >
+                    {faq.topic}
+                    <svg class="store-faq-icon w-4 h-4 text-on-surface-variant group-hover:text-primary transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
+                    </svg>
+                  </button>
+                  <div class="store-faq-content hidden mt-1 text-on-surface-variant text-sm leading-relaxed">
+                    {faq.content}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
-    )}
+          </div>
+        )}
 
-    <!-- FAQ Section -->
-    {store.faqs.length > 0 && (
-      <section class="mb-12 md:mb-16">
-        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">
-          Frequently Asked Questions
-        </h2>
-        
-        <div class="space-y-3" id="faq-accordion">
-          {store.faqs.map((faq, index) => (
-            <div class="card">
-              <button
-                class="faq-toggle w-full p-4 md:p-6 text-left flex items-center justify-between gap-4"
-                data-index={index}
-                aria-expanded="false"
-              >
-                <span class="font-medium text-gray-900">{faq.topic}</span>
-                <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div class="faq-content hidden px-4 md:px-6 pb-4 md:pb-6">
-                <p class="text-sm text-gray-600">{faq.content}</p>
-              </div>
-            </div>
-          ))}
+        <!-- Newsletter CTA -->
+        <div class="bg-midnight-navy p-6 rounded-xl text-white">
+          <h3 class="text-xl font-bold mb-2">Never Miss a Deal</h3>
+          <p class="text-slate-gray text-sm mb-4">Get exclusive voucher codes for {store.name} directly to your inbox.</p>
+          <form class="space-y-3" on:submit|preventDefault>
+            <input
+              type="email"
+              placeholder="Enter email address"
+              class="w-full bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+            <button type="submit" class="w-full bg-primary text-white label-caps py-3 rounded-lg hover:bg-primary-hover transition-colors">
+              SUBSCRIBE
+            </button>
+          </form>
         </div>
-      </section>
-    )}
-
-    <!-- About Section -->
-    {store.about && (
-      <section class="mb-12 md:mb-16">
-        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-          About {store.name}
-        </h2>
-        <div class="card p-4 md:p-6">
-          <p class="text-sm text-gray-600 leading-relaxed">{store.about}</p>
-        </div>
-      </section>
-    )}
+      </aside>
+    </div>
 
     <!-- Related Stores -->
     {relatedStores.length > 0 && (
-      <section>
-        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">
-          Related Stores
-        </h2>
-        
+      <section class="mt-16">
+        <h2 class="text-2xl font-bold text-on-surface mb-6">Related Stores</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {relatedStores.map((relatedStore) => (
             <StoreCard store={relatedStore} />
@@ -222,19 +242,27 @@ const isValid = (coupon: { isValid?: number }) => coupon.isValid !== 0;
         </div>
       </section>
     )}
-  </div>
+  </main>
 </BaseLayout>
 
 <script>
-  document.querySelectorAll('.faq-toggle').forEach((button) => {
+  // Store page FAQ accordion
+  document.querySelectorAll('.store-faq-toggle').forEach((button) => {
     button.addEventListener('click', () => {
       const content = button.nextElementSibling as HTMLElement;
-      const icon = button.querySelector('.faq-icon') as SVGElement;
+      const icon = button.querySelector('.store-faq-icon') as SVGElement;
       const isExpanded = button.getAttribute('aria-expanded') === 'true';
       
       button.setAttribute('aria-expanded', String(!isExpanded));
       content?.classList.toggle('hidden');
-      icon?.classList.toggle('rotate-180');
+      
+      if (icon) {
+        if (!isExpanded) {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />';
+        } else {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />';
+        }
+      }
     });
   });
 </script>

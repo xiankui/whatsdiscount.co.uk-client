@@ -1,0 +1,43 @@
+---
+const valueProps = [
+  {
+    icon: 'bolt',
+    title: 'Instant Savings',
+    desc: 'One-click copy and instant redirect to your favourite stores. Fast, simple, seamless.',
+  },
+  {
+    icon: 'verified',
+    title: 'Hand Verified',
+    desc: 'Every code is manually tested by our team to guarantee it works before listing.',
+  },
+  {
+    icon: 'sell',
+    title: 'Exclusive Codes',
+    desc: 'VIP access to codes negotiated directly with top UK retailers and brands.',
+  },
+];
+---
+
+<section class="bg-surface-container py-12 md:py-16">
+  <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <p class="label-caps text-primary mb-2 uppercase tracking-widest">Why Choose Us</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-midnight-navy mb-10">
+      Why <span class="italic text-primary">WhatsDiscount</span>?
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+      {valueProps.map((prop) => (
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-outline-variant/30 flex flex-col items-center hover:shadow-md transition-shadow">
+          <div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {prop.icon === 'bolt' && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />}
+              {prop.icon === 'verified' && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />}
+              {prop.icon === 'sell' && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />}
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-midnight-navy mb-4">{prop.title}</h3>
+          <p class="text-on-surface-variant text-base text-center">{prop.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

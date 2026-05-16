@@ -1,4 +1,4 @@
-import type { ApiResponse } from './types';
+import type { ApiResponse, DecorationBrand } from './types';
 
 const CMS_API_BASE = import.meta.env.CMS_API_URL;
 const SITE_ID = import.meta.env.SITE_ID;
@@ -90,6 +90,10 @@ export async function getPopularStores(limit: number = 10) {
 
 export async function getTopMenus(): Promise<TopMenuItem[]> {
   return cmsFetch<TopMenuItem[]>('/api/site/decoration?key=layout-top-menus');
+}
+
+export async function getPopularBrands(): Promise<DecorationBrand[]> {
+  return cmsFetch<DecorationBrand[]>('/api/site/decoration?key=index-popular-brands');
 }
 
 export async function getDecoration(key: string) {
