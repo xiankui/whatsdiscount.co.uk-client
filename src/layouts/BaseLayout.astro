@@ -11,6 +11,19 @@ import '../styles/global.css';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "WhatsDiscount",
+      "url": "https://www.whatsdiscount.co.uk",
+      "logo": "https://www.whatsdiscount.co.uk/logo.png",
+      "sameAs": [],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "url": "https://www.whatsdiscount.co.uk/contact"
+      }
+    })} />
     <slot name="head" />
   </head>
   <body>

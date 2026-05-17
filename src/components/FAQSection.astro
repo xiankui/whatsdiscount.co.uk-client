@@ -1,6 +1,4 @@
 ---
-import SEO from './SEO.astro';
-
 interface FAQItem {
   question: string;
   answer: string;
@@ -28,26 +26,7 @@ const faqs: FAQItem[] = [
     answer: 'Our team adds and verifies new codes daily. We monitor retailers for new promotions and update our listings regularly to ensure you always have access to the latest discounts.',
   },
 ];
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map((faq) => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer,
-    },
-  })),
-};
 ---
-
-<SEO
-  title=""
-  description=""
-  structuredData={structuredData}
-/>
 
 <section class="py-12 md:py-16">
   <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
