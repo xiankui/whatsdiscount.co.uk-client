@@ -11,31 +11,22 @@ interface Props {
 const { coupon, store, variant = 'ticket' } = Astro.props;
 const encodedId = encodeCouponLink(store.domain, coupon.id);
 const isValid = coupon.isValid !== 0;
-
-const discountText = coupon.disInfo || coupon.title;
-const parts = discountText.split(/\s+/);
-const discountValue = parts[0];
-const discountType = parts.slice(1).join(' ');
 ---
 
 {variant === 'ticket' ? (
-  <div class="bg-white rounded-xl shadow-sm border border-midnight-navy/5 overflow-hidden flex flex-col md:flex-row hover:shadow-md transition-shadow group shimmer-sweep">
-    <!-- Left: Discount Value -->
-    <div class="p-6 md:w-44 shrink-0 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-outline-variant/40 relative digital-ticket">
+  <div class="bg-white rounded-xl shadow-sm border border-midnight-navy/5 overflow-hidden flex flex-col md:grid md:grid-cols-[15%_60%_25%] hover:shadow-md transition-shadow group shimmer-sweep">
+    <!-- Left: Logo -->
+    <div class="p-6 shrink-0 flex items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-outline-variant/40 relative digital-ticket">
       <img
         src={getImageUrl(store.logoPic)}
         alt={store.name}
-        class="h-12 w-12 object-contain mb-3"
+        class="h-20 w-20 object-contain"
         loading="lazy"
       />
-      <div class="text-center">
-        <span class="block text-3xl font-extrabold text-primary leading-tight">{discountValue}</span>
-        <span class="label-caps text-on-surface-variant">{discountType}</span>
-      </div>
     </div>
 
     <!-- Center: Details -->
-    <div class="p-6 flex-grow flex flex-col justify-center">
+    <div class="p-6 flex flex-col justify-center">
       <div class="flex justify-between items-start mb-2">
         <h3 class="text-lg font-bold text-midnight-navy">{coupon.title}</h3>
       </div>
@@ -53,11 +44,11 @@ const discountType = parts.slice(1).join(' ');
     </div>
 
     <!-- Right: Action -->
-    <div class="p-6 md:w-1/4 bg-surface-container flex items-center justify-center group">
+    <div class="p-6 bg-surface-container flex items-center justify-center group">
       {coupon.type === 'code' && coupon.code ? (
         <a
           href={`/detail/${encodedId}`}
-          class="btn-code-reveal group-hover:scale-105 transition-transform"
+          class="btn-code-reveal group-hover:scale-105 transition-transform w-full"
         >
           <span class="btn-code-reveal-main">Show Code</span>
           <span class="btn-code-reveal-peel">
