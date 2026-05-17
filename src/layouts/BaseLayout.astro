@@ -25,9 +25,7 @@ import '../styles/global.css';
       <Footer />
     </div>
 
-    <script is:inline>
-      window.__IMG_URL__ = '{import.meta.env.IMG_URL || ""}';
-    </script>
+    <script is:inline set:html={`window.__IMG_URL__ = ${JSON.stringify(import.meta.env.IMG_URL || "")};`} />
     <SearchDrawer client:only="react" />
   </body>
 </html>

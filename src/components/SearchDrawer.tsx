@@ -149,12 +149,18 @@ export function SearchDrawer() {
                     onClick={onClose}
                   >
                     <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                      <img
-                        src={`${(window as any).__IMG_URL__ || ''}${store.logoPic}`}
-                        alt={store.name}
-                        className="w-8 h-8 object-contain"
-                        loading="lazy"
-                      />
+                      {store.logoPic ? (
+                        <img
+                          src={`${(window as any).__IMG_URL__ || ''}${store.logoPic}`}
+                          alt={store.name}
+                          className="w-8 h-8 object-contain"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <span className="text-sm font-bold text-gray-500">
+                          {store.name.slice(0, 2).toUpperCase()}
+                        </span>
+                      )}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-gray-900 truncate">{store.name}</p>
