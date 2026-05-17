@@ -16,19 +16,18 @@ const CACHE_TTL = 2 * 60 * 60 * 1000;
 
 function extractDisInfo(title: string): string {
   const patterns = [
-    /^£[\d.]+\s*Off/i,
-    /^\d+%\s*Off/i,
-    /^Free\s+(Shipping|Delivery|Postage)/i,
-    /^Buy\s+\d+\s+Get\s+\d+\s+Free/i,
-    /^\d+\s+for\s+£[\d.]+/i,
+    [/\b(\d+)%\s*[Oo]ff/i, (m: RegExpMatchArray) => `${m[1]}% Off`],
+    [/Save\s*(£[\d.]+)/i, (m: RegExpMatchArray) => `${m[1]} Off`],
+    [/(£[\d.]+)\s*[Oo]ff/i, (m: RegExpMatchArray) => `${m[1]} Off`],
+    [/\b(Free\s+(Shipping|Delivery|Postage))/i, (m: RegExpMatchArray) => m[1].replace(/\b\w/g, (c) => c.toUpperCase())],
+    [/\b(Buy\s+\d+\s+Get\s+\d+\s+Free)/i, (m: RegExpMatchArray) => m[1].replace(/\b\w/g, (c) => c.toUpperCase())],
+    [/\b(SAVE|CODE|DISCOUNT)\d+/i, () => 'Save Now'],
   ];
-  for (const pattern of patterns) {
+  for (const [pattern, transform] of patterns) {
     const match = title.match(pattern);
-    if (match) return match[0];
+    if (match) return transform ? transform(match) : match[0].replace(/[^a-zA-Z0-9%£\s]/g, '').trim();
   }
-  const colonIndex = title.indexOf(':');
-  if (colonIndex > 0) return title.slice(0, colonIndex).trim();
-  return title.split(/\s+/).slice(0, 3).join(' ');
+  return title.split(/\s+/).slice(0, 2).join(' ');
 }
 
 function seededRandom(seed: number): () => number {

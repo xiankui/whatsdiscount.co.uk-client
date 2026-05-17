@@ -144,6 +144,37 @@
   .shimmer-sweep:hover::after {
     left: 130%;
   }
+  
+  .btn-code-reveal {
+    @apply inline-flex items-center rounded-lg font-semibold text-white overflow-y-visible;
+  }
+  
+  .btn-code-reveal-main {
+    @apply bg-primary px-4 py-3 flex items-center rounded-l-lg flex-1;
+  }
+  
+  .btn-code-reveal .btn-code-reveal-main {
+    @apply group-hover:bg-primary-hover transition-colors;
+  }
+  
+  .btn-code-reveal-peel {
+    @apply rounded-r-lg border-2 border-dotted border-primary bg-surface-container
+           py-3 px-2 text-primary font-mono tracking-wide text-sm font-bold;
+  }
+  
+  .btn-code-reveal:hover .btn-code-reveal-peel {
+    @apply bg-surface-container-high;
+  }
+  
+  .code-reveal-extra {
+    @apply inline-block opacity-0 transition-all duration-300;
+    transform: translateX(-4px);
+  }
+  
+  .btn-code-reveal:hover .code-reveal-extra {
+    @apply opacity-100;
+    transform: translateX(0);
+  }
 }
 
 @layer utilities {
