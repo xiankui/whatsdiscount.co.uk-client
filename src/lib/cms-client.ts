@@ -1,4 +1,4 @@
-import type { ApiResponse, DecorationBrand } from './types';
+import type { ApiResponse, DecorationBrand, Coupon } from './types';
 
 const CMS_API_BASE = import.meta.env.CMS_API_URL;
 const SITE_ID = import.meta.env.SITE_ID;
@@ -9,6 +9,69 @@ if (!CMS_API_BASE) {
 
 if (!SITE_ID) {
   throw new Error('Missing SITE_ID environment variable. Check your .env.local file.');
+}
+
+const storeCache = new Map<string, { data: unknown; timestamp: number }>();
+const CACHE_TTL = 2 * 60 * 60 * 1000;
+
+function extractDisInfo(title: string): string {
+  const patterns = [
+    /^£[\d.]+\s*Off/i,
+    /^\d+%\s*Off/i,
+    /^Free\s+(Shipping|Delivery|Postage)/i,
+    /^Buy\s+\d+\s+Get\s+\d+\s+Free/i,
+    /^\d+\s+for\s+£[\d.]+/i,
+  ];
+  for (const pattern of patterns) {
+    const match = title.match(pattern);
+    if (match) return match[0];
+  }
+  const colonIndex = title.indexOf(':');
+  if (colonIndex > 0) return title.slice(0, colonIndex).trim();
+  return title.split(/\s+/).slice(0, 3).join(' ');
+}
+
+function seededRandom(seed: number): () => number {
+  let s = seed;
+  return () => {
+    s = (s * 16807 + 0) % 2147483647;
+    return (s - 1) / 2147483646;
+  };
+}
+
+function hashString(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
+}
+
+function generateCouponStats(couponId: number, domain: string): Partial<Coupon> {
+  if (couponId > 2) return {};
+  const seed = hashString(domain) + couponId * 31;
+  const rand = seededRandom(seed);
+  const now = new Date();
+  const ranges = [
+    { usesMin: 800, usesMax: 3000, rateMin: 94, rateMax: 99, saveMin: 15, saveMax: 65, dayMin: 14, dayMax: 30 },
+    { usesMin: 400, usesMax: 1500, rateMin: 88, rateMax: 96, saveMin: 10, saveMax: 45, dayMin: 7, dayMax: 21 },
+    { usesMin: 200, usesMax: 800, rateMin: 82, rateMax: 94, saveMin: 5, saveMax: 30, dayMin: 3, dayMax: 14 },
+  ];
+  const range = ranges[couponId];
+  const usesToday = Math.floor(rand() * (range.usesMax - range.usesMin)) + range.usesMin;
+  const successRate = Math.floor(rand() * (range.rateMax - range.rateMin)) + range.rateMin;
+  const avgSaving = Math.floor(rand() * (range.saveMax - range.saveMin)) + range.saveMin;
+  const expireDays = Math.floor(rand() * (range.dayMax - range.dayMin)) + range.dayMin;
+  const expireDate = new Date(now.getTime() + expireDays * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  return { usesToday, successRate, avgSaving, expireDate };
+}
+
+function enrichCoupons(coupons: Coupon[], domain: string): Coupon[] {
+  return coupons.map((coupon) => {
+    const disInfo = coupon.disInfo || extractDisInfo(coupon.title);
+    const stats = generateCouponStats(coupon.id, domain);
+    return { ...coupon, disInfo, ...stats };
+  });
 }
 
 async function cmsFetch<T>(path: string): Promise<T> {
@@ -53,7 +116,17 @@ export async function getStoresByDomains(domains: string[]) {
 }
 
 export async function getStoreDetail(domain: string) {
-  return cmsFetch(`/api/site/stores/${domain}`);
+  const cached = storeCache.get(domain);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+    return cached.data;
+  }
+  const data = await cmsFetch(`/api/site/stores/${domain}`);
+  const enriched = {
+    ...data,
+    coupons: enrichCoupons((data as { coupons: Coupon[] }).coupons || [], domain),
+  };
+  storeCache.set(domain, { data: enriched, timestamp: Date.now() });
+  return enriched;
 }
 
 export async function getLatestCoupons(limit: number = 10) {

@@ -13,6 +13,10 @@ export interface Coupon {
   description?: string;
   isValid?: number;
   source?: string;
+  expireDate?: string;
+  usesToday?: number;
+  successRate?: number;
+  avgSaving?: number;
 }
 
 export interface CouponWithSiteStore extends Coupon {
