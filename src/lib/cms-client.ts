@@ -73,6 +73,17 @@ function enrichCoupons(coupons: Coupon[], domain: string): Coupon[] {
   });
 }
 
+function generateStoreSuccessRate(coupons: Coupon[], domain: string): number {
+  const ratedCoupons = coupons.filter((c) => c.successRate != null);
+  if (ratedCoupons.length > 0) {
+    const avg = ratedCoupons.reduce((sum, c) => sum + (c.successRate || 0), 0) / ratedCoupons.length;
+    return Math.round(avg);
+  }
+  const seed = hashString(domain);
+  const rand = seededRandom(seed);
+  return Math.floor(rand() * 14) + 85;
+}
+
 async function cmsFetch<T>(path: string): Promise<T> {
   const url = `${CMS_API_BASE}${path}`;
   
@@ -120,9 +131,11 @@ export async function getStoreDetail(domain: string) {
     return cached.data;
   }
   const data = await cmsFetch(`/api/site/stores/${domain}`);
+  const coupons = (data as { coupons: Coupon[] }).coupons || [];
   const enriched = {
     ...data,
-    coupons: enrichCoupons((data as { coupons: Coupon[] }).coupons || [], domain),
+    successRate: generateStoreSuccessRate(coupons, domain),
+    coupons: enrichCoupons(coupons, domain),
   };
   storeCache.set(domain, { data: enriched, timestamp: Date.now() });
   return enriched;

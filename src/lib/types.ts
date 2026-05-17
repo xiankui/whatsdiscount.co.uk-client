@@ -45,6 +45,7 @@ export interface SiteStoreDetail {
   about: string;
   seo: SEO;
   lastUpdateAt?: string;
+  successRate?: number;
 }
 
 export interface SavingTip {
