@@ -63,6 +63,12 @@ const discountText = coupon.disInfo || coupon.title;
   </Fragment>
 
   <div class="mt-28 px-4 sm:px-6 lg:px-8 max-w-container-max mx-auto w-full pb-16">
+    <a href={`/discount/${domain}`} class="inline-flex items-center text-sm text-on-surface-variant hover:text-primary transition-colors mb-6">
+      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      View all {store.name} vouchers
+    </a>
     <!-- Voucher Detail Section (The Digital Ticket) -->
     <div class="mb-gutter">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
