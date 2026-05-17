@@ -48,7 +48,7 @@ try {
 ---
 
 <BaseLayout>
-  <head>
+  <Fragment slot="head">
     <SEO
       title="WhatsDiscount - UK's Most Trusted Coupon Destination"
       description="Discover hand-tested discount codes and exclusive vouchers from hundreds of top UK retailers. Save more on every purchase."
@@ -64,14 +64,12 @@ try {
         }
       }}
     />
-  </head>
+  </Fragment>
   
   <!-- Hero Section -->
   <HeroStats storeCount={stats.storeCount} couponCount={stats.couponCount} />
 
-  <main>
-
-    <!-- Featured Brands -->
+  <!-- Featured Brands -->
     {popularBrands.length > 0 && (
       <section class="px-4 sm:px-6 lg:px-8 py-8">
         <div class="max-w-container-max mx-auto">
@@ -194,5 +192,4 @@ try {
         </div>
       </div>
     </section>
-  </main>
 </BaseLayout>

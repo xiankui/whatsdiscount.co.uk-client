@@ -21,9 +21,9 @@ const {
   noindex = false,
 } = Astro.props;
 
-const siteUrl = import.meta.env.BASE_URL || 'https://www.whatsdiscount.co.uk';
+const siteUrl = 'https://www.whatsdiscount.co.uk';
 const currentCanonical = canonical || siteUrl + Astro.url.pathname;
-const ogImage = image || `${siteUrl}/og-default.png`;
+const ogImage = image || `${siteUrl}/logo.png`;
 ---
 
 {title && <title>{title}</title>}

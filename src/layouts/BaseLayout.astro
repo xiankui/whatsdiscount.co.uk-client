@@ -3,13 +3,6 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SearchDrawer from '../components/SearchDrawer';
 import '../styles/global.css';
-
-interface Props {
-  title?: string;
-  description?: string;
-}
-
-const { title = 'WhatsDiscount', description = '' } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -18,8 +11,6 @@ const { title = 'WhatsDiscount', description = '' } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    {title && <title>{title}</title>}
-    {description && <meta name="description" content={description} />}
     <slot name="head" />
   </head>
   <body>

@@ -42,10 +42,11 @@ const discountText = coupon.disInfo || coupon.title;
 ---
 
 <BaseLayout>
-  <head>
+  <Fragment slot="head">
     <SEO
       title={`${coupon.title} - ${store.name} | WhatsDiscount`}
       description={coupon.description || coupon.title}
+      image={getImageUrl(store.logoPic)}
       structuredData={{
         "@context": "https://schema.org",
         "@type": "Offer",
@@ -59,9 +60,9 @@ const discountText = coupon.disInfo || coupon.title;
         "availability": isValid ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
       }}
     />
-  </head>
+  </Fragment>
 
-  <main class="mt-28 px-4 sm:px-6 lg:px-8 max-w-container-max mx-auto w-full pb-16">
+  <div class="mt-28 px-4 sm:px-6 lg:px-8 max-w-container-max mx-auto w-full pb-16">
     <!-- Voucher Detail Section (The Digital Ticket) -->
     <div class="mb-gutter">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
@@ -204,7 +205,7 @@ const discountText = coupon.disInfo || coupon.title;
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </BaseLayout>
 
 <script>
