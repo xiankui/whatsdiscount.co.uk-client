@@ -103,36 +103,18 @@ function formatUses(n?: number): string {
                     <p class="text-on-surface-variant mb-8 max-w-2xl">{coupon.description}</p>
                   )}
                   
-                  <!-- Split Action Button -->
+                  <!-- Code Display Box -->
                   {coupon.type === 'code' && coupon.code && (
                     <div class="flex flex-col sm:flex-row gap-3">
-                      <div class="group relative flex items-stretch h-14 w-full sm:w-auto">
+                      <div class="flex items-center gap-3 bg-surface-container border-2 border-dashed border-primary rounded-xl px-6 py-4 flex-1">
+                        <code class="text-xl font-mono font-bold text-primary tracking-wider flex-1 break-all">{coupon.code}</code>
                         <button
-                          id="copy-visit-btn"
+                          id="copy-btn"
                           data-code={coupon.code}
-                          data-url={`/api/r?domain=${store.domain}`}
-                          class="btn-split-primary shimmer-sweep"
+                          class="btn-primary px-6 py-2 whitespace-nowrap"
                         >
-                          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                          </svg>
-                          <span id="copy-btn-text">Copy & Visit</span>
+                          Copy
                         </button>
-                        <div class="w-[1px] bg-white/20"></div>
-                        <a
-                          href={`/api/r?domain=${store.domain}`}
-                          class="btn-split-secondary"
-                          rel="nofollow noopener"
-                          target="_blank"
-                          aria-label="Visit store"
-                        >
-                          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </a>
-                        <div id="copy-feedback" class="absolute -top-10 left-1/2 -translate-x-1/2 bg-midnight-navy text-white label-caps px-3 py-1 rounded opacity-0 pointer-events-none transition-opacity">
-                          Code Copied!
-                        </div>
                       </div>
                       <div class="flex items-center gap-2 label-caps border border-outline-variant/30 rounded-xl px-4 h-14">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,14 +182,10 @@ function formatUses(n?: number): string {
             <ul class="space-y-6">
               <li class="flex gap-4">
                 <span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold shrink-0">1</span>
-                <p class="text-on-surface-variant">Click 'Copy & Visit' to copy the code automatically to your clipboard.</p>
+                <p class="text-on-surface-variant">Click the <strong>Copy</strong> button to copy the code to your clipboard.</p>
               </li>
               <li class="flex gap-4">
                 <span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold shrink-0">2</span>
-                <p class="text-on-surface-variant">The retailer's website will open in a new tab for your convenience.</p>
-              </li>
-              <li class="flex gap-4">
-                <span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold shrink-0">3</span>
                 <p class="text-on-surface-variant">Paste the code into the 'Promo Code' box at checkout to apply your discount.</p>
               </li>
             </ul>
@@ -228,53 +206,29 @@ function formatUses(n?: number): string {
 </BaseLayout>
 
 <script>
-  const copyBtn = document.getElementById('copy-visit-btn');
-  const feedback = document.getElementById('copy-feedback');
-  const btnText = document.getElementById('copy-btn-text');
+  const copyBtn = document.getElementById('copy-btn');
   
   copyBtn?.addEventListener('click', async () => {
     const code = copyBtn.getAttribute('data-code');
-    const url = copyBtn.getAttribute('data-url');
-    
     if (!code) return;
     
     try {
       await navigator.clipboard.writeText(code);
-      
-      // Show feedback
-      if (feedback) {
-        feedback.classList.remove('opacity-0');
-        feedback.classList.add('opacity-100');
-        setTimeout(() => {
-          feedback.classList.remove('opacity-100');
-          feedback.classList.add('opacity-0');
-        }, 2000);
-      }
-      
-      // Update button text
-      if (btnText) {
-        btnText.textContent = code;
-        setTimeout(() => {
-          btnText.textContent = 'Copy & Visit';
-        }, 3000);
-      }
-      
-      // Open store in new tab
-      if (url) {
-        window.open(url, '_blank');
-      }
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy';
+      }, 2000);
     } catch {
-      // Fallback
       const textarea = document.createElement('textarea');
       textarea.value = code;
       document.body.appendChild(textarea);
       textarea.select();
       document.execCommand('copy');
       document.body.removeChild(textarea);
-      
-      if (url) {
-        window.open(url, '_blank');
-      }
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy';
+      }, 2000);
     }
   });
 </script>
