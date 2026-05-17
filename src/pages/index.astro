@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SEO from '../components/SEO.astro';
-import QuickAccessPills from '../components/QuickAccessPills.astro';
+import HeroStats from '../components/HeroStats.astro';
 import FeaturedBrands from '../components/FeaturedBrands.astro';
 import CouponCard from '../components/CouponCard.astro';
 import StoreCard from '../components/StoreCard.astro';
@@ -66,57 +66,10 @@ try {
     />
   </head>
   
-  <main>
-    <!-- Hero Section -->
-    <section class="relative py-12 md:py-20 text-center overflow-hidden">
-      <div class="absolute inset-0 -z-10 opacity-[0.04] flex justify-center items-center pointer-events-none">
-        <span class="text-[300px] md:text-[400px] font-extrabold text-midnight-navy select-none leading-none">%</span>
-      </div>
-      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="label-caps text-primary uppercase tracking-widest mb-4">UK's Most Trusted Coupon Destination</p>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-midnight-navy tracking-tight mb-4">
-          Save More on <span class="italic text-primary">Every</span> Purchase
-        </h1>
-        <p class="text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto mb-8">
-          Discover hand-tested discount codes and exclusive vouchers from {stats.storeCount.toLocaleString()}+ top UK retailers.
-        </p>
-        
-        <!-- Search Gateway -->
-        <div class="max-w-xl mx-auto glass-panel rounded-xl p-2 flex items-center shadow-lg mb-6">
-          <svg class="w-5 h-5 text-on-surface-variant ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <input
-            id="hero-search"
-            type="text"
-            placeholder="Search for brands or products..."
-            class="w-full bg-transparent border-none focus:ring-0 px-4 py-3 text-base text-midnight-navy placeholder-on-surface-variant/50"
-          />
-          <button
-            id="hero-search-btn"
-            class="bg-primary text-white font-bold px-6 py-3 rounded-lg hover:scale-105 transition-transform active:scale-95 whitespace-nowrap"
-          >
-            Search
-          </button>
-        </div>
-        
-        <a href="/stores" class="inline-flex items-center gap-2 text-white bg-midnight-navy px-8 py-3 rounded-full hover:bg-primary transition-colors font-medium">
-          Browse All Vouchers
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
-      </div>
-    </section>
+  <!-- Hero Section -->
+  <HeroStats storeCount={stats.storeCount} couponCount={stats.couponCount} />
 
-    <!-- Quick Access Pills -->
-    {latestCoupons.length > 0 && (
-      <section class="px-4 sm:px-6 lg:px-8 pb-8">
-        <div class="max-w-container-max mx-auto">
-          <QuickAccessPills coupons={latestCoupons} />
-        </div>
-      </section>
-    )}
+  <main>
 
     <!-- Featured Brands -->
     {popularBrands.length > 0 && (
@@ -243,24 +196,3 @@ try {
     </section>
   </main>
 </BaseLayout>
-
-<script>
-  const searchBtn = document.getElementById('hero-search-btn');
-  const searchInput = document.getElementById('hero-search');
-  
-  searchBtn?.addEventListener('click', () => {
-    const query = (searchInput as HTMLInputElement)?.value;
-    if (query) {
-      window.dispatchEvent(new CustomEvent('open-search'));
-    }
-  });
-  
-  searchInput?.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      const query = (e.target as HTMLInputElement).value;
-      if (query) {
-        window.dispatchEvent(new CustomEvent('open-search'));
-      }
-    }
-  });
-</script>
