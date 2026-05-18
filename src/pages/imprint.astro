@@ -6,36 +6,193 @@ import SEO from '../components/SEO.astro';
 <BaseLayout>
   <Fragment slot="head">
     <SEO
-      title="Imprint - WhatsDiscount"
-      description="Legal imprint and operator information for WhatsDiscount."
+      title="Imprint - WhatsDiscount | Legal Information & Company Details"
+      description="Legal imprint, company information, and disclaimer for WhatsDiscount. Find our company details, dispute resolution information, and liability notices."
+      structuredData={{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Imprint",
+        "description": "Legal imprint and company details for WhatsDiscount.",
+        "url": "https://www.whatsdiscount.co.uk/imprint",
+        "datePublished": "2026-01-01",
+        "dateModified": "2026-01-01",
+        "publisher": {
+          "@type": "Organization",
+          "name": "WhatsDiscount",
+          "url": "https://www.whatsdiscount.co.uk"
+        }
+      }}
     />
   </Fragment>
 
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-    <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Imprint</h1>
-    
-    <div class="prose prose-gray max-w-none space-y-6">
-      <h2 class="text-xl font-semibold text-gray-900">Website Operator</h2>
-      <p class="text-gray-600">
-        WhatsDiscount<br />
-        United Kingdom<br />
-        Email: <a href="/contact" class="text-primary hover:text-primary-hover">Contact us</a>
-      </p>
-
-      <h2 class="text-xl font-semibold text-gray-900">Disclaimer</h2>
-      <p class="text-gray-600">
-        The content of this website has been created with the utmost care. However, we cannot guarantee the accuracy, completeness, or timeliness of the information provided.
-      </p>
-
-      <h2 class="text-xl font-semibold text-gray-900">Liability for Links</h2>
-      <p class="text-gray-600">
-        Our website contains links to external third-party websites. We have no influence on the content of these websites and therefore cannot assume any liability for them. The respective providers or operators of the linked sites are always responsible for their content.
-      </p>
-
-      <h2 class="text-xl font-semibold text-gray-900">Copyright</h2>
-      <p class="text-gray-600">
-        The content and works created by the site operators on these pages are subject to UK copyright law. The duplication, processing, distribution, or any form of commercialisation of such material requires the prior written consent of the respective author or creator.
+  <!-- Hero Section -->
+  <section class="bg-midnight-navy py-16 md:py-20">
+    <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="label-caps text-primary uppercase tracking-widest mb-4">Legal</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight">
+        <span class="italic text-primary">Imprint</span>
+      </h1>
+      <p class="text-slate-gray text-lg max-w-2xl">
+        Legal Information & Company Details
       </p>
     </div>
+  </section>
+
+  <!-- Content -->
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-12">
+
+    <!-- Company Info -->
+    <section id="company-info">
+      <h2 class="text-2xl font-bold text-midnight-navy mb-6">WhatsDiscount Imprint</h2>
+      <div class="card p-6">
+        <h3 class="font-semibold text-midnight-navy text-lg mb-3">Worthnet Holdings LLC</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">
+          6327 West Blvd, Los Angeles, CA 90043
+        </p>
+        <p class="text-on-surface-variant text-sm mt-3">
+          Email: <a href="mailto:hello@whatsdiscount.co.uk" class="text-primary hover:text-primary-hover">hello@whatsdiscount.co.uk</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- EU Dispute Resolution -->
+    <section id="eu-dispute-resolution">
+      <h2 class="text-2xl font-bold text-midnight-navy mb-6">EU Dispute Resolution</h2>
+      <p class="text-on-surface-variant leading-relaxed mb-6">
+        The European Commission provides a platform for online dispute resolution (OS):
+      </p>
+
+      <div class="card p-6 mb-6">
+        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" class="text-primary font-semibold hover:text-primary-hover transition-colors flex items-center gap-2">
+          https://ec.europa.eu/consumers/odr/
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+        <p class="text-on-surface-variant text-sm mt-3">
+          You can find our e-mail address in the imprint above.
+        </p>
+      </div>
+
+      <div class="card p-6">
+        <h3 class="font-semibold text-midnight-navy mb-2">Consumer Dispute Resolution</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">
+          We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.
+        </p>
+        <p class="text-on-surface-variant text-xs mt-3 text-white/50">Source: eRecht24</p>
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section id="disclaimer">
+      <h2 class="text-2xl font-bold text-midnight-navy mb-6">Disclaimer</h2>
+
+      <div class="space-y-6">
+        <!-- Liability for Contents -->
+        <div class="card p-6 flex items-start gap-4">
+          <div class="w-10 h-10 bg-surface-container-low rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-midnight-navy mb-2">Liability for Contents</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">
+              The contents of our pages were created with the utmost care. However, we cannot guarantee the correctness, completeness and up-to-dateness of the contents. As a service provider, we are responsible for our own content on these pages in accordance with the general laws pursuant to § 7 para. 1 TMG.
+            </p>
+            <p class="text-on-surface-variant text-sm leading-relaxed mt-2">
+              However, according to §§ 8 to 10 TMG, we are not obliged as a service provider to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.
+            </p>
+          </div>
+        </div>
+
+        <!-- Liability for Links -->
+        <div class="card p-6 flex items-start gap-4">
+          <div class="w-10 h-10 bg-surface-container-low rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-midnight-navy mb-2">Liability for Links</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">
+              Our website contains links to external third-party websites over whose content we have no influence. Therefore, we cannot assume any liability for these external contents.
+            </p>
+            <p class="text-on-surface-variant text-sm leading-relaxed mt-2">
+              The respective provider or operator of the pages is always responsible for the content of the linked pages. The linked pages were checked for possible legal violations at the time of linking.
+            </p>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="card p-6 flex items-start gap-4">
+          <div class="w-10 h-10 bg-surface-container-low rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-midnight-navy mb-2">Copyright</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">
+              The contents and works created by the site operators on these pages are subject to German copyright law. Duplication, processing, distribution, or any form of commercialization of such material beyond the scope of the copyright law shall require the prior written consent of its respective author or creator.
+            </p>
+            <p class="text-on-surface-variant text-sm leading-relaxed mt-2">
+              Downloads and copies of this site are only permitted for private, non-commercial use.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Site Offer -->
+    <section id="site-offer">
+      <h2 class="text-2xl font-bold text-midnight-navy mb-6">Site Offer</h2>
+      <p class="text-on-surface-variant leading-relaxed mb-6">
+        This website offers all information about bargains, deals and offers in online shops all over Europe.
+      </p>
+
+      <div class="bg-surface-container-low rounded-lg p-5 flex items-start gap-3">
+        <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="text-on-surface-variant text-sm leading-relaxed">
+          Partly offers are offered with so-called Ref Links whereby the creator can get various discounts, but the user has to pay the normal sales price without hidden costs.
+        </p>
+      </div>
+    </section>
+
+    <!-- Amazon Partnership -->
+    <section id="amazon-partnership">
+      <h2 class="text-2xl font-bold text-midnight-navy mb-6">Amazon.co.uk Partnership</h2>
+      <p class="text-on-surface-variant leading-relaxed mb-6">
+        whatsdiscount.co.uk is an affiliate programme of Amazon EU, designed to provide a means for websites to earn advertising fees through the placement of advertisements and links to Amazon.
+      </p>
+
+      <div class="card p-6">
+        <h3 class="font-semibold text-midnight-navy mb-3">Data Protection Declaration (GDPR)</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+          We are participants in the partner programme of Amazon EU S.à r.l. This partner programme was set up by Amazon in order to be able to place advertisements and links to amazon.de on external Internet pages.
+        </p>
+        <p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+          The owners of the Internet pages earn money through the reimbursement of advertising costs in the form of a commission. Amazon uses cookies to trace the origin of orders. Amazon can therefore recognise that you have clicked on the partner link on our website.
+        </p>
+        <a href="http://www.amazon.de/gp/help/customer/display.html/ref=footer_privacy?ie=UTF8&nodeId=3312401" target="_blank" rel="noopener noreferrer" class="text-primary font-semibold text-sm hover:text-primary-hover transition-colors inline-flex items-center gap-1">
+          Learn more about Amazon's use of data
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
   </div>
+
+  <!-- Legal Notice -->
+  <section class="bg-surface-container py-8">
+    <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-on-surface-variant text-sm">
+        Imprint information according to § TMG
+      </p>
+    </div>
+  </section>
 </BaseLayout>
