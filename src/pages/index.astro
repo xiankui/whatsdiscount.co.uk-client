@@ -7,14 +7,13 @@ import CouponCard from '../components/CouponCard.astro';
 import StoreCard from '../components/StoreCard.astro';
 import ValueProps from '../components/ValueProps.astro';
 import FAQSection from '../components/FAQSection.astro';
-import { getSiteStats, getLatestCoupons, getPopularStores, getPopularBrands, getTopMenus } from '../lib/cms-client';
-import type { SiteStoreSummary, CouponWithSiteStore, DecorationBrand, TopMenuItem } from '../lib/types';
+import { getSiteStats, getLatestCoupons, getPopularStores, getPopularBrands } from '../lib/cms-client';
+import type { SiteStoreSummary, CouponWithSiteStore, DecorationBrand } from '../lib/types';
 
 let stats = { storeCount: 3000, couponCount: 25000 };
 let latestCoupons: CouponWithSiteStore[] = [];
 let popularStores: SiteStoreSummary[] = [];
 let popularBrands: DecorationBrand[] = [];
-let categories: TopMenuItem[] = [];
 
 try {
   stats = await getSiteStats();
@@ -38,12 +37,6 @@ try {
   popularBrands = await getPopularBrands();
 } catch (e) {
   console.error('[Homepage] Failed to fetch popular brands:', e);
-}
-
-try {
-  categories = await getTopMenus();
-} catch (e) {
-  console.error('[Homepage] Failed to fetch categories:', e);
 }
 ---
 
@@ -111,25 +104,6 @@ try {
         </div>
       </div>
     </section>
-
-    <!-- Categories -->
-    {categories.length > 0 && (
-      <section class="py-12 md:py-16">
-        <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-10">
-            <p class="label-caps text-primary mb-2 uppercase tracking-widest">Explore</p>
-            <h2 class="text-2xl md:text-3xl font-bold text-midnight-navy">
-              Browse by <span class="italic text-primary">Category</span>
-            </h2>
-          </div>
-          <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-            {categories.map((cat) => (
-              <a href={cat.path} class="tag">{cat.name}</a>
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
 
     <!-- Popular Stores -->
     {popularStores.length > 0 && (
