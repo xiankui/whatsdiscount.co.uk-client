@@ -6,75 +6,338 @@ import SEO from '../components/SEO.astro';
 <BaseLayout>
   <Fragment slot="head">
     <SEO
-      title="Contact Us - WhatsDiscount"
-      description="Get in touch with the WhatsDiscount team. We're here to help with any questions about voucher codes, partnerships, or technical issues."
+      title="Contact Us - WhatsDiscount | Get in Touch"
+      description="Get in touch with the WhatsDiscount team. Questions about discount codes, voucher codes, partnerships, or technical issues - we're here to help."
+      structuredData={{
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact WhatsDiscount",
+        "description": "Contact the WhatsDiscount team for questions about discount codes, partnerships, or feedback.",
+        "url": "https://www.whatsdiscount.co.uk/contact",
+        "mainEntity": {
+          "@type": "Organization",
+          "name": "WhatsDiscount",
+          "url": "https://www.whatsdiscount.co.uk",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "hello@whatsdiscount.co.uk",
+            "contactType": "customer service",
+            "availableLanguage": "English",
+            "areaServed": "GB"
+          }
+        }
+      }}
     />
   </Fragment>
 
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-    <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Contact Us</h1>
-    
-    <p class="text-gray-600 mb-8">
-      Have a question or feedback? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.
-    </p>
-
-    <div class="card p-6 md:p-8">
-      <form class="space-y-6">
-        <div>
-          <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-            placeholder="Your name"
-          />
-        </div>
-
-        <div>
-          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-            placeholder="your@email.com"
-          />
-        </div>
-
-        <div>
-          <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-          <select
-            id="subject"
-            name="subject"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-          >
-            <option value="">Select a subject</option>
-            <option value="code-issue">Code not working</option>
-            <option value="partnership">Partnership enquiry</option>
-            <option value="feedback">Feedback</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            required
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
-            placeholder="How can we help?"
-          ></textarea>
-        </div>
-
-        <button type="submit" class="btn-primary w-full sm:w-auto">
-          Send Message
-        </button>
-      </form>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-midnight-navy py-20 md:py-28">
+    <div class="absolute right-0 top-0 opacity-[0.03] pointer-events-none select-none">
+      <span class="text-[500px] font-extrabold text-white leading-none">%</span>
     </div>
-  </div>
+    <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <p class="label-caps text-primary uppercase tracking-widest mb-4">We're Here to Help</p>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+        Contact <span class="italic text-primary">Us</span>
+      </h1>
+      <p class="text-slate-gray text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+        WhatsDiscount is proud to be your loyal companion when shopping online. Whether you have a question, suggestion, or found a code that isn't working — we're always looking forward to hearing from you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Info Cards -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Email Us -->
+        <div class="card p-8 text-center hover:shadow-md transition-shadow">
+          <div class="w-14 h-14 bg-surface-container-low rounded-xl flex items-center justify-center mx-auto mb-5">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-midnight-navy mb-2">Email Us</h3>
+          <p class="text-on-surface-variant text-sm mb-4">Send us an email and we'll get back to you as soon as possible.</p>
+          <a href="mailto:hello@whatsdiscount.co.uk" class="text-primary font-semibold hover:text-primary-hover transition-colors">
+            hello@whatsdiscount.co.uk
+          </a>
+        </div>
+
+        <!-- Response Time -->
+        <div class="card p-8 text-center hover:shadow-md transition-shadow">
+          <div class="w-14 h-14 bg-surface-container-low rounded-xl flex items-center justify-center mx-auto mb-5">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-midnight-navy mb-2">Response Time</h3>
+          <p class="text-on-surface-variant text-sm mb-4">We typically respond within business hours on weekdays.</p>
+          <div class="text-primary font-bold text-xl">24-48 Hours</div>
+        </div>
+
+        <!-- How Can We Help -->
+        <div class="card p-8 hover:shadow-md transition-shadow">
+          <div class="w-14 h-14 bg-surface-container-low rounded-xl flex items-center justify-center mx-auto mb-5">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-midnight-navy mb-3">How Can We Help?</h3>
+          <ul class="space-y-2 text-on-surface-variant text-sm">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Report expired or invalid codes
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Suggest new stores or offers
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Partnership inquiries
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              General feedback & suggestions
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="bg-surface-container-low py-12 md:py-16">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <p class="label-caps text-primary mb-2 uppercase tracking-widest">Send a Message</p>
+        <h2 class="text-2xl md:text-3xl font-bold text-midnight-navy">
+          Get in <span class="italic text-primary">Touch</span>
+        </h2>
+        <p class="text-on-surface-variant mt-2">Fill out the form below and we'll get back to you as soon as possible.</p>
+      </div>
+
+      <div class="card p-6 md:p-8">
+        <form id="contact-form" class="space-y-6">
+          <div>
+            <label for="name" class="block text-sm font-semibold text-midnight-navy mb-2">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full px-4 py-3 bg-white border border-outline-variant/50 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition-all text-on-surface"
+              placeholder="Your name"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-semibold text-midnight-navy mb-2">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full px-4 py-3 bg-white border border-outline-variant/50 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition-all text-on-surface"
+              placeholder="your@email.com"
+            />
+          </div>
+
+          <div>
+            <label for="subject" class="block text-sm font-semibold text-midnight-navy mb-2">Subject</label>
+            <select
+              id="subject"
+              name="subject"
+              class="w-full px-4 py-3 bg-white border border-outline-variant/50 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition-all text-on-surface"
+            >
+              <option value="">Select a subject</option>
+              <option value="code-issue">Code not working</option>
+              <option value="partnership">Partnership enquiry</option>
+              <option value="feedback">Feedback</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-semibold text-midnight-navy mb-2">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              class="w-full px-4 py-3 bg-white border border-outline-variant/50 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition-all text-on-surface resize-none"
+              placeholder="How can we help?"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary w-full sm:w-auto">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <p class="label-caps text-primary mb-2 uppercase tracking-widest">Support</p>
+        <h2 class="text-2xl md:text-3xl font-bold text-midnight-navy">
+          Frequently Asked <span class="italic text-primary">Questions</span>
+        </h2>
+        <p class="text-on-surface-variant mt-2">Quick answers to common questions about our service</p>
+      </div>
+
+      <div class="max-w-3xl mx-auto divide-y divide-outline-variant/30" id="contact-faq-accordion">
+        <div class="py-4">
+          <button
+            class="faq-toggle-contact w-full flex justify-between items-center text-left text-lg font-bold text-midnight-navy group"
+            aria-expanded="false"
+          >
+            How do I use a discount code?
+            <svg class="faq-icon-contact w-5 h-5 text-on-surface-variant group-hover:text-primary transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
+            </svg>
+          </button>
+          <div class="faq-content-contact hidden mt-2 text-on-surface-variant text-base leading-relaxed">
+            Simply copy the code from our website and paste it at checkout on the retailer's website. The discount will be applied automatically to your order total.
+          </div>
+        </div>
+
+        <div class="py-4">
+          <button
+            class="faq-toggle-contact w-full flex justify-between items-center text-left text-lg font-bold text-midnight-navy group"
+            aria-expanded="false"
+          >
+            Why isn't my code working?
+            <svg class="faq-icon-contact w-5 h-5 text-on-surface-variant group-hover:text-primary transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
+            </svg>
+          </button>
+          <div class="faq-content-contact hidden mt-2 text-on-surface-variant text-base leading-relaxed">
+            Some codes may have expired, have specific terms and conditions (like minimum spend), or may not apply to sale items. Please check the code details carefully. If it still doesn't work, feel free to contact us and we'll investigate.
+          </div>
+        </div>
+
+        <div class="py-4">
+          <button
+            class="faq-toggle-contact w-full flex justify-between items-center text-left text-lg font-bold text-midnight-navy group"
+            aria-expanded="false"
+          >
+            Can I submit a discount code?
+            <svg class="faq-icon-contact w-5 h-5 text-on-surface-variant group-hover:text-primary transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
+            </svg>
+          </button>
+          <div class="faq-content-contact hidden mt-2 text-on-surface-variant text-base leading-relaxed">
+            Yes! We welcome user submissions. Please email us with the code details, the store name, and any relevant terms. Our team will review and verify the code before adding it to our database.
+          </div>
+        </div>
+
+        <div class="py-4">
+          <button
+            class="faq-toggle-contact w-full flex justify-between items-center text-left text-lg font-bold text-midnight-navy group"
+            aria-expanded="false"
+          >
+            How often are codes updated?
+            <svg class="faq-icon-contact w-5 h-5 text-on-surface-variant group-hover:text-primary transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
+            </svg>
+          </button>
+          <div class="faq-content-contact hidden mt-2 text-on-surface-variant text-base leading-relaxed">
+            We update our database daily to ensure you always have access to the latest and most valid discount codes. Our team monitors retailers for new promotions and removes expired codes regularly.
+          </div>
+        </div>
+
+        <div class="py-4">
+          <button
+            class="faq-toggle-contact w-full flex justify-between items-center text-left text-lg font-bold text-midnight-navy group"
+            aria-expanded="false"
+          >
+            Is WhatsDiscount free to use?
+            <svg class="faq-icon-contact w-5 h-5 text-on-surface-variant group-hover:text-primary transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
+            </svg>
+          </button>
+          <div class="faq-content-contact hidden mt-2 text-on-surface-variant text-base leading-relaxed">
+            Absolutely! All voucher codes and deals on WhatsDiscount are completely free to use. We earn a small commission from retailers when you make a purchase through our links, but this never affects the price you pay — in fact, you save money!
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Thank You Section -->
+  <section class="bg-surface-container py-12 md:py-16">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+      </div>
+      <h2 class="text-2xl md:text-3xl font-bold text-midnight-navy mb-4">
+        Thank You for Your <span class="italic text-primary">Support</span>
+      </h2>
+      <p class="text-on-surface-variant text-lg leading-relaxed">
+        Your feedback helps us improve and serve you better. We appreciate every message we receive and are committed to helping UK shoppers save more on every purchase.
+      </p>
+    </div>
+  </section>
 </BaseLayout>
+
+<script>
+  document.querySelectorAll('.faq-toggle-contact').forEach((button) => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling as HTMLElement;
+      const icon = button.querySelector('.faq-icon-contact') as SVGElement;
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      
+      button.setAttribute('aria-expanded', String(!isExpanded));
+      content?.classList.toggle('hidden');
+      
+      if (icon) {
+        if (!isExpanded) {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />';
+        } else {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />';
+        }
+      }
+    });
+  });
+
+  const contactForm = document.getElementById('contact-form') as HTMLFormElement;
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(contactForm);
+      const name = formData.get('name') as string;
+      const email = formData.get('email') as string;
+      const subject = formData.get('subject') as string;
+      const message = formData.get('message') as string;
+      
+      const subjectMap: Record<string, string> = {
+        'code-issue': 'Code Not Working - ',
+        'partnership': 'Partnership Enquiry - ',
+        'feedback': 'Feedback - ',
+        'other': 'General Enquiry - ',
+      };
+      
+      const emailSubject = subjectMap[subject] || 'General Enquiry - ' + subject;
+      const emailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+      
+      const mailtoLink = `mailto:hello@whatsdiscount.co.uk?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+      window.location.href = mailtoLink;
+    });
+  }
+</script>

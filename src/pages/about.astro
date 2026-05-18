@@ -6,45 +6,218 @@ import SEO from '../components/SEO.astro';
 <BaseLayout>
   <Fragment slot="head">
     <SEO
-      title="About Us - WhatsDiscount UK"
-      description="Learn about WhatsDiscount, the UK's trusted voucher code and promo code aggregator. We help you save money with hand-tested codes from thousands of stores."
+      title="About Us - WhatsDiscount | UK's Trusted Voucher Code Site"
+      description="Discover how WhatsDiscount helps UK shoppers save money with hand-tested, verified discount codes from over 3,000 retailers. Learn about our mission and process."
+      structuredData={{
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About WhatsDiscount",
+        "description": "WhatsDiscount is the UK's trusted source for verified discount codes, voucher codes, and exclusive savings from over 3,000 retailers.",
+        "url": "https://www.whatsdiscount.co.uk/about",
+        "mainEntity": {
+          "@type": "Organization",
+          "name": "WhatsDiscount",
+          "url": "https://www.whatsdiscount.co.uk",
+          "logo": "https://www.whatsdiscount.co.uk/logo.png",
+          "description": "UK's trusted source for verified discount codes, voucher codes, and exclusive discounts.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "GB"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "hello@whatsdiscount.co.uk",
+            "contactType": "customer service",
+            "url": "https://www.whatsdiscount.co.uk/contact"
+          }
+        }
+      }}
     />
   </Fragment>
 
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-    <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">About WhatsDiscount</h1>
-    
-    <div class="prose prose-gray max-w-none">
-      <p class="text-gray-600 mb-4">
-        WhatsDiscount is a UK-based voucher code and promo code aggregation platform. Our mission is to help consumers save money by providing verified, hand-tested discount codes from thousands of retailers across the United Kingdom.
-      </p>
-      
-      <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">What We Do</h2>
-      <p class="text-gray-600 mb-4">
-        We collect and verify promo codes from over 3,000 UK stores, covering categories including fashion, electronics, home & garden, travel, food & drink, and many more. Our team works to ensure the codes we list are active and working, so you can shop with confidence.
-      </p>
-      
-      <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">How It Works</h2>
-      <ol class="list-decimal list-inside space-y-2 text-gray-600 mb-4">
-        <li>Browse stores by category or search for your favourite retailer</li>
-        <li>Find a voucher code or deal that suits your needs</li>
-        <li>Click "Show Code" to reveal the discount code</li>
-        <li>Copy the code and visit the store's website</li>
-        <li>Apply the code at checkout to save money</li>
-      </ol>
-      
-      <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Why Trust Us</h2>
-      <ul class="list-disc list-inside space-y-2 text-gray-600 mb-4">
-        <li>All codes are regularly verified for validity</li>
-        <li>We display the last updated date for transparency</li>
-        <li>Our saving tips help you maximise your savings</li>
-        <li>We cover a wide range of UK retailers</li>
-      </ul>
-      
-      <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Get in Touch</h2>
-      <p class="text-gray-600 mb-4">
-        Have a question, suggestion, or found a code that isn't working? <a href="/contact" class="text-primary hover:text-primary-hover">Contact us</a> and we'll get back to you as soon as possible.
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-midnight-navy py-20 md:py-28">
+    <div class="absolute right-0 top-0 opacity-[0.03] pointer-events-none select-none">
+      <span class="text-[500px] font-extrabold text-white leading-none">%</span>
+    </div>
+    <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <p class="label-caps text-primary uppercase tracking-widest mb-4">Our Story</p>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+        About <span class="italic text-primary">WhatsDiscount</span>
+      </h1>
+      <p class="text-slate-gray text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+        The UK's trusted destination for verified discount codes and exclusive savings. We help millions of shoppers find better deals every single day.
       </p>
     </div>
-  </div>
+  </section>
+
+  <!-- What We Do -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <p class="label-caps text-primary mb-2 uppercase tracking-widest">Our Mission</p>
+        <h2 class="text-2xl md:text-3xl font-bold text-midnight-navy">
+          What We <span class="italic text-primary">Do</span>
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Code Verification -->
+        <div class="card p-8 hover:shadow-md transition-shadow">
+          <div class="w-14 h-14 bg-surface-container-low rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-midnight-navy mb-3">Code Verification</h3>
+          <p class="text-on-surface-variant leading-relaxed">
+            Every discount code on our platform is hand-tested and verified by our dedicated team. We check validity, terms, and expiry dates so you never waste time on broken codes.
+          </p>
+        </div>
+
+        <!-- Store Coverage -->
+        <div class="card p-8 hover:shadow-md transition-shadow">
+          <div class="w-14 h-14 bg-surface-container-low rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-midnight-navy mb-3">Store Coverage</h3>
+          <p class="text-on-surface-variant leading-relaxed">
+            We partner with over 3,000 UK retailers across every category — from high street fashion and electronics to home & garden, travel, food & drink, and beyond.
+          </p>
+        </div>
+
+        <!-- Smart Shopping -->
+        <div class="card p-8 hover:shadow-md transition-shadow">
+          <div class="w-14 h-14 bg-surface-container-low rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-midnight-navy mb-3">Smart Shopping</h3>
+          <p class="text-on-surface-variant leading-relaxed">
+            Beyond codes, we provide saving tips, seasonal deal guides, and exclusive offers negotiated directly with retailers to help you maximise every purchase.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="bg-surface-container-low py-12 md:py-16">
+    <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <p class="label-caps text-primary mb-2 uppercase tracking-widest">Simple Steps</p>
+        <h2 class="text-2xl md:text-3xl font-bold text-midnight-navy">
+          How It <span class="italic text-primary">Works</span>
+        </h2>
+        <p class="text-on-surface-variant mt-2">Save money in four easy steps</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <!-- Step 1 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+          <h3 class="text-lg font-bold text-midnight-navy mb-2">Browse Stores</h3>
+          <p class="text-on-surface-variant text-sm">Search for your favourite retailer or explore categories to find the best deals.</p>
+        </div>
+        <!-- Step 2 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+          <h3 class="text-lg font-bold text-midnight-navy mb-2">Find a Deal</h3>
+          <p class="text-on-surface-variant text-sm">Browse verified voucher codes and special offers tailored to your needs.</p>
+        </div>
+        <!-- Step 3 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+          <h3 class="text-lg font-bold text-midnight-navy mb-2">Copy the Code</h3>
+          <p class="text-on-surface-variant text-sm">Click "Show Code" to reveal and copy your discount code instantly.</p>
+        </div>
+        <!-- Step 4 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">4</div>
+          <h3 class="text-lg font-bold text-midnight-navy mb-2">Save at Checkout</h3>
+          <p class="text-on-surface-variant text-sm">Paste the code at the retailer's checkout and watch your total drop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Trust Us -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <p class="label-caps text-primary mb-2 uppercase tracking-widest">Our Numbers</p>
+        <h2 class="text-2xl md:text-3xl font-bold text-midnight-navy">
+          Why Trust <span class="italic text-primary">Us</span>
+        </h2>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div class="text-center p-6 bg-white rounded-xl border border-outline-variant/30">
+          <div class="text-3xl md:text-4xl font-extrabold text-primary mb-2">3,000+</div>
+          <div class="text-on-surface-variant text-sm font-medium">UK Retailers</div>
+        </div>
+        <div class="text-center p-6 bg-white rounded-xl border border-outline-variant/30">
+          <div class="text-3xl md:text-4xl font-extrabold text-primary mb-2">25,000+</div>
+          <div class="text-on-surface-variant text-sm font-medium">Active Codes</div>
+        </div>
+        <div class="text-center p-6 bg-white rounded-xl border border-outline-variant/30">
+          <div class="text-3xl md:text-4xl font-extrabold text-primary mb-2">Daily</div>
+          <div class="text-on-surface-variant text-sm font-medium">Code Updates</div>
+        </div>
+        <div class="text-center p-6 bg-white rounded-xl border border-outline-variant/30">
+          <div class="text-3xl md:text-4xl font-extrabold text-primary mb-2">100%</div>
+          <div class="text-on-surface-variant text-sm font-medium">Free Forever</div>
+        </div>
+      </div>
+      <div class="mt-10 max-w-2xl mx-auto">
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            <p class="text-on-surface-variant">All codes are regularly verified for validity and active status</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            <p class="text-on-surface-variant">We display last updated dates for full transparency</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            <p class="text-on-surface-variant">Our saving tips help you maximise every purchase</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            <p class="text-on-surface-variant">We cover a comprehensive range of UK retailers and categories</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-midnight-navy py-16 md:py-20 overflow-hidden relative">
+    <div class="absolute left-0 bottom-0 opacity-[0.04] pointer-events-none select-none">
+      <span class="text-[300px] md:text-[400px] font-extrabold text-white leading-none">?</span>
+    </div>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight">
+        Have a <span class="italic text-primary">Question</span>?
+      </h2>
+      <p class="text-slate-gray text-lg mb-8">
+        Found a code that isn't working? Want to suggest a new store or share feedback? We'd love to hear from you.
+      </p>
+      <a href="/contact" class="inline-flex items-center gap-2 text-white bg-primary px-8 py-4 rounded-xl hover:bg-primary-hover transition-colors font-bold text-lg">
+        Get in Touch
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
 </BaseLayout>
