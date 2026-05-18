@@ -1,6 +1,6 @@
 ---
 import { getStoreDetail, getRelatedStores } from '../../lib/cms-client';
-import { getImageUrl, encodeCouponLink, formatDate } from '../../lib/utils';
+import { getImageUrl, encodeCouponLink, formatDate, extractDiscountInfo } from '../../lib/utils';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SEO from '../../components/SEO.astro';
 import StoreCard from '../../components/StoreCard.astro';
@@ -127,9 +127,7 @@ const isValid = (coupon: { isValid?: number }) => coupon.isValid !== 0;
           const encodedId = encodeCouponLink(store.domain, coupon.id);
           const valid = isValid(coupon);
           const discountText = coupon.disInfo || coupon.title;
-          const parts = discountText.split(/\s+/);
-          const discountValue = parts[0];
-          const discountType = parts.slice(1).join(' ');
+          const { value: discountValue, type: discountType } = extractDiscountInfo(discountText);
           
           return (
             <div class="bg-white rounded-xl shadow-sm border border-midnight-navy/5 overflow-hidden flex flex-col md:flex-row hover:shadow-md transition-shadow group shimmer-sweep">

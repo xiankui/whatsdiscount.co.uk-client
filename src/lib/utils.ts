@@ -44,6 +44,26 @@ export function slugify(text: string): string {
     .trim();
 }
 
+export function extractDiscountInfo(text: string): { value: string; type: string } {
+  // Extract percentage: 15%, 20% OFF, etc.
+  const percentMatch = text.match(/(\d+%)/i);
+  if (percentMatch) {
+    const type = /off/i.test(text) ? 'Off' : /save/i.test(text) ? 'Save' : 'Discount';
+    return { value: percentMatch[1], type };
+  }
+
+  // Extract currency: $10, £15, €20
+  const currencyMatch = text.match(/([£$€]\d+(?:\.\d+)?)/i);
+  if (currencyMatch) {
+    const type = /off/i.test(text) ? 'Off' : /save/i.test(text) ? 'Save' : 'Discount';
+    return { value: currencyMatch[1], type };
+  }
+
+  // Fallback: first word + rest
+  const parts = text.split(/\s+/);
+  return { value: parts[0], type: parts.slice(1).join(' ') || 'Discount' };
+}
+
 export function truncate(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
   return text.slice(0, maxLength).trimEnd() + '...';
