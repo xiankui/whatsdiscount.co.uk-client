@@ -1,14 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
-    <linearGradient id="tag-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ac001e" />
       <stop offset="100%" stop-color="#d90429" />
     </linearGradient>
   </defs>
-  <!-- 折扣标签形状 -->
-  <path d="M12 4 L44 4 L58 18 L58 52 Q58 56 54 58 L12 58 Q8 58 6 56 L6 12 Q6 8 8 6 Q10 4 12 4 Z" fill="url(#tag-bg)" />
-  <!-- 左上角圆孔 -->
-  <circle cx="18" cy="18" r="5" fill="#fff8f7" />
-  <!-- WD 字母 -->
-  <text x="38" y="40" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-weight="900" fill="#ffffff" font-size="20" letter-spacing="-0.5">WD</text>
+  <rect width="64" height="64" rx="14" fill="url(#grad)" />
+  <text x="32" y="42" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-weight="900" fill="#ffffff" font-size="22" letter-spacing="1">WD</text>
 </svg>
