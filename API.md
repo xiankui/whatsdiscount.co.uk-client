@@ -164,7 +164,6 @@ GET /api/site/stores/:domain
 ```
 
 > **IMPORTANT**
-> `htmlContent` 返回的是 **Markdown 原文**，前端需自行做 Markdown→HTML 转换。
 > `lastUpdateAt` 为商家内容最后更新时间（ISO 8601 格式），可用于展示 "Updated on ..." 等信息。如果内容从未更新过，该字段不返回。
 
 ---
